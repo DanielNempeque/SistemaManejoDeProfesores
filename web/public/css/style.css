@@ -1,0 +1,47 @@
+body{
+	color: #00B7FF;
+}
+a{
+	color: #00B7FF;
+}
+a:hover{
+	text-decoration: none;
+}
+.float-none{
+	float: none;
+}
+.padding-big{
+	padding: 50px;
+}
+label{
+	color: #000;
+}
+.btn-login{
+	background-color: #002661;
+	color: #FFF;
+}
+.pos-realtive{
+	position:relative;
+	z-index: 0;
+}
+.pos-absolute{
+	position: absolute;
+	z-index: 1;
+	top: 15%;
+	left: 25%;
+}
+.timer-1{
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay:1s;
+	animation-delay: 1s;
+}
+.timer-half{
+	-webkit-animation-delay: 0.5s;
+	-moz-animation-delay:0.5s;
+	animation-delay: 0.5s;
+}
+.timer-2{
+	-webkit-animation-delay: 2s;
+	-moz-animation-delay:2s;
+	animation-delay: 2s;
+}

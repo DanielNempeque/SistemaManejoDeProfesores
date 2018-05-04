@@ -1,0 +1,26 @@
+.margin-all{
+	margin: 4%;
+}
+.thead-blue{
+	background-color: #002661;
+}
+.color-white{
+	color: #FFF;
+}
+.color-black{
+	color: #000;
+}
+.margin-sides{
+	margin-left: 4%;
+	margin-right: 4%;
+	margin-top: 3%;
+}
+.btn-mid{
+	height:50%;
+	margin: 1%;
+}
+.margin-bottom{
+	margin-left: 4%;
+	margin-right: 4%;
+	margin-bottom: 23%;
+}
