@@ -41,7 +41,7 @@
         <!--navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-blue">
             <!--navbar brand-->
-            <a class="navbar-brand" href="main.html">
+            <a class="navbar-brand" href="main.jsp">
                 <img class="logo" src="public/img/logo-sabana-blanco.png">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="main.html">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="main.jsp">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,6 +78,7 @@
                             <a class="dropdown-item" href="profesor.jsp">Profesor</a>
                             <a class="dropdown-item" href="gruposInvestigacion.jsp">Grupos de investigación</a>
                             <a class="dropdown-item" href="proyectos.jsp">Proyectos</a>
+                            <a class="dropdown-item" href="usuario.jsp">Usuarios</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -224,7 +225,7 @@
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
-        <script src="public/js/areasAcademicas.js"></script>
+        <script src="public/js/confirmacion.js"></script>
     </body>
 
 </html>

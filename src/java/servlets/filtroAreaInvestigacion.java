@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Daniel Nempeque
  */
-@WebServlet(name = "filtroAreaAcademica", urlPatterns = {"/filtroAreaAcademica"})
-public class filtroAreaAcademica extends HttpServlet {
+@WebServlet(name = "filtroAreaInvestigacion", urlPatterns = {"/filtroAreaInvestigacion"})
+public class filtroAreaInvestigacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +36,7 @@ public class filtroAreaAcademica extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String filtro = request.getParameter("filtro");
             request.setAttribute("filtro", filtro);
-            request.getRequestDispatcher("/areasAcademicas.jsp").forward(request, response);            
+            request.getRequestDispatcher("/areasInvestigacion.jsp").forward(request, response);
         }
     }
 

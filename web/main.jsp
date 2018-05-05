@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -74,6 +75,7 @@
 						<a class="dropdown-item" href="profesor.jsp">Profesor</a>
 						<a class="dropdown-item" href="gruposInvestigacion.jsp">Grupos de investigación</a>
 						<a class="dropdown-item" href="proyectos.jsp">Proyectos</a>
+                                                <a class="dropdown-item" href="usuario.jsp">Usuarios</a>
 					</div>
 				</li>
 				<li class="nav-item">

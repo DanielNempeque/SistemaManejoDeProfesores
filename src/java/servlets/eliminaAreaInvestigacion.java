@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Gestion.GestionAreaInvestigacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Daniel Nempeque
  */
-@WebServlet(name = "filtroAreaAcademica", urlPatterns = {"/filtroAreaAcademica"})
-public class filtroAreaAcademica extends HttpServlet {
+@WebServlet(name = "eliminaAreaInvestigacion", urlPatterns = {"/eliminaAreaInvestigacion"})
+public class eliminaAreaInvestigacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,9 +35,11 @@ public class filtroAreaAcademica extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String filtro = request.getParameter("filtro");
-            request.setAttribute("filtro", filtro);
-            request.getRequestDispatcher("/areasAcademicas.jsp").forward(request, response);            
+            String id = request.getParameter("delid");
+            GestionAreaInvestigacion gest = new GestionAreaInvestigacion();
+            String respuesta = gest.borraAreaInvestigacion(id);
+            request.setAttribute("respuesta", respuesta);
+            request.getRequestDispatcher("/areasInvestigacion.jsp").forward(request, response);
         }
     }
 
