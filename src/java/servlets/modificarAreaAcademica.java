@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Daniel Nempeque
  */
-@WebServlet(name = "crearAreaAcademica", urlPatterns = {"/crearAreaAcademica"})
-public class crearAreaAcademica extends HttpServlet {
+@WebServlet(name = "modificarAreaAcademica", urlPatterns = {"/modificarAreaAcademica"})
+public class modificarAreaAcademica extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +34,10 @@ public class crearAreaAcademica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("newid");
-            String nombre = request.getParameter("newname");
+            String id = request.getParameter("modid");
+            String nombre = request.getParameter("modname");
             GestionAreaAcademica gest = new GestionAreaAcademica();
-            String respuesta = gest.nuevaAreaAcademica(id, nombre);
+            String respuesta = gest.editarAreaAcademica(id, nombre);
             request.setAttribute("respuesta", respuesta);
             request.getRequestDispatcher("/areasAcademicas.jsp").forward(request, response);
         }

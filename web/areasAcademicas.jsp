@@ -100,8 +100,25 @@
             <p>
                 Facultad de ingenieria
             </p>
+            <%
+                if(request.getAttribute("respuesta")!=null){
+                    out.print("<h2>"+request.getAttribute("respuesta")+"</h2>");
+                    request.setAttribute("respuesta", null);
+                }
+            %>
+            <h2> </h2>
         </div>
         <div class="margin-sides">
+            <form method="GET" action="filtroAreaAcademica">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input class="form-control" id="filt" type="text" name="filtro" placeholder="Filtro">
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success ">Buscar</button>
+                    </div>
+                </div>
+            </form>
             <table class="table">
                 <caption>Lista de areas académicas</caption>
                 <thead class="thead-blue">
@@ -114,15 +131,29 @@
 
                     <%
                         GestionAreaAcademica gest = new GestionAreaAcademica();
-                        ArrayList<AreaAcademica> areas = gest.listaAreas();
-                        if (areas != null) {
-                            for (AreaAcademica area : areas) {
-                                out.print("<tr>");
-                                out.print("<td class='text-justify'>" + area.getId() + "</td>");
-                                out.print("<td class='text-justify'>" + area.getNombre() + "</td>");
-                                out.print("</tr>");
+                        if(request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")){
+                            ArrayList<AreaAcademica> areas = gest.listaAreas();
+                            if (areas != null) {
+                                for (AreaAcademica area : areas) {
+                                    out.print("<tr>");
+                                    out.print("<td class='text-justify'>" + area.getId() + "</td>");
+                                    out.print("<td class='text-justify'>" + area.getNombre() + "</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                        }else if(request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")){
+                            String filtro = request.getAttribute("filtro").toString();
+                            ArrayList<AreaAcademica> areas = gest.listaAreasFiltro(filtro);
+                            if (areas != null) {
+                                for (AreaAcademica area : areas) {
+                                    out.print("<tr>");
+                                    out.print("<td class='text-justify'>" + area.getId() + "</td>");
+                                    out.print("<td class='text-justify'>" + area.getNombre() + "</td>");
+                                    out.print("</tr>");
+                                }
                             }
                         }
+                        
 
                     %>
                 </tbody>
@@ -159,33 +190,33 @@
                 </div>
 
                 <div id="modifica" class="tab-pane fade">
-                    <form class="margin-sides">
+                    <form class="margin-sides" method="GET" action="modificarAreaAcademica" id="modificaform">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="modid">
                             </div>
                             <div class="col">
                                 <label for="inNom">Nombre:</label>
-                                <input type="text" class="form-control" placeholder="Nombre" id="inNom">
+                                <input type="text" class="form-control" placeholder="Nombre" id="inNom" name="modname" >
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-warning btn-mid">Modificar area académica</button>
+                        <button type="button" id="btnmod" class="btn btn-lg btn-warning btn-mid">Modificar area académica</button>
                     </form>
 
                 </div>
 
                 <div id="elimina" class="tab-pane fade">
-                    <form class="margin-sides">
+                    <form class="margin-sides" id="formdel" method="GET" action="eliminaAreaAcademica">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="delid">
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-danger btn-mid">Eliminar area académica</button>
+                        <button type="button" id="btndel" class="btn btn-lg btn-danger btn-mid">Eliminar area académica</button>
                     </form>
 
                 </div>
@@ -193,6 +224,7 @@
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
+        <script src="public/js/areasAcademicas.js"></script>
     </body>
 
 </html>

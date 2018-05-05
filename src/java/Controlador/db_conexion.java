@@ -14,27 +14,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class db_conexion {
-    private Connection connection = null;
-    public void makeConnection(){
-        //The URL used to make the connection to SQLServer
-        String url="jdbc:sqlserver://localhost:1433;databaseName=IngenieriaSoftware";
-        /*
+public class db_conexion {  
+    
+    
+    public static Connection getConnection(){
+        Connection connection = null;
+        String user = "sa";
+        String password = "qwerty";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=IngenieriaSoftware";
+            connection = DriverManager.getConnection(url,user,password);
         } catch (ClassNotFoundException e) {
+             System.err.println("ERROR: "+e);
+        } catch (SQLException e){
             System.err.println("ERROR: "+e);
+        }catch (Exception e){
+            System.err.println("ERROR: " +e);
         }
-        */
-        try {
-            //Stablish the connection to the DB using the previous URL, the user "sa" and the password "querty"
-            this.connection = DriverManager.getConnection(url,"sa","qwerty");
-        } catch (SQLException e) {
-            System.err.println("ERROR: "+e);
-        }
-    }
-    public Connection getConnection(){
         //Resturns the connection to the DB
-        return this.connection;
+        return connection;
     }
 }
