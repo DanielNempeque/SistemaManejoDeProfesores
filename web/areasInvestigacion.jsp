@@ -11,6 +11,13 @@
 <%@page session="true"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
+<%
+    HttpSession session1 = request.getSession();
+    Usuario us = (Usuario) session1.getAttribute("user");
+    if (us != null) {
+
+
+%>
 <html>
 
 <head>
@@ -227,4 +234,7 @@
 </body>
 
 </html>
-
+<% }else{
+        response.sendRedirect("index.jsp");
+   }
+%>
