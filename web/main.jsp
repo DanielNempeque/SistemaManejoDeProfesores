@@ -115,10 +115,10 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="public/img/edificio d.jpg" alt="First slide" alt="Second slide">
+				<img class="d-block w-100" src="public/img/puente gris.jpg" alt="First slide" alt="Second slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="public/img/edificio d.jpg" alt="First slide" alt="Third slide">
+				<img class="d-block w-100" src="public/img/lago.jpg" alt="First slide" alt="Third slide">
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
