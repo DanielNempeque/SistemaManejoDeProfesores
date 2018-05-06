@@ -87,7 +87,7 @@
 				</li>
 			</ul>
 			<!--navbar items right-->
-			<form class="form-inline my-2 my-lg-0">
+			<form class="form-inline my-2 my-lg-0" method="GET" action="Logout">
 				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Cerrar sesion</button>
 			</form>
 		</div>

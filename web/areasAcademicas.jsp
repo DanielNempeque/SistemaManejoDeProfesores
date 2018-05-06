@@ -87,7 +87,7 @@
                     </li>
                 </ul>
                 <!--navbar items right-->
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0" method="GET" action="Logout">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Cerrar sesion</button>
                 </form>
             </div>
@@ -103,8 +103,8 @@
                 Facultad de ingenieria
             </p>
             <%
-                if(request.getAttribute("respuesta")!=null){
-                    out.print("<h2>"+request.getAttribute("respuesta")+"</h2>");
+                if (request.getAttribute("respuesta") != null) {
+                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
                     request.setAttribute("respuesta", null);
                 }
             %>
@@ -133,7 +133,7 @@
 
                     <%
                         GestionAreaAcademica gest = new GestionAreaAcademica();
-                        if(request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")){
+                        if (request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")) {
                             ArrayList<AreaAcademica> areas = gest.listaAreas();
                             if (areas != null) {
                                 for (AreaAcademica area : areas) {
@@ -143,7 +143,7 @@
                                     out.print("</tr>");
                                 }
                             }
-                        }else if(request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")){
+                        } else if (request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")) {
                             String filtro = request.getAttribute("filtro").toString();
                             ArrayList<AreaAcademica> areas = gest.listaAreasFiltro(filtro);
                             if (areas != null) {
@@ -155,7 +155,7 @@
                                 }
                             }
                         }
-                        
+
 
                     %>
                 </tbody>

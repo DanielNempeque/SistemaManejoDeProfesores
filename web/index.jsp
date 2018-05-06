@@ -38,13 +38,14 @@
 
             <img src="public/img/logo-sabana-blanco.png" class="float-none center-block pos-absolute animated fadeIn timer-1 img-fluid ">
         </div>
-        <%
-            if (request.getAttribute("respuesta") != null) {
-                out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
-                request.setAttribute("respuesta", null);
-            }
-        %>
+
         <div class="col-md-3 float-none center-block padding-big">
+            <%
+                if (request.getAttribute("respuesta") != null) {
+                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
+                    request.setAttribute("respuesta", null);
+                }
+            %>
             <form method="GET" action="login">
                 <div class="form-group">
                     <label for="inputUser">Usuario o correo</label>
@@ -55,8 +56,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="pass">
                 </div>
 
-                <button type="submit" class="btn btn-default center-block btn-login" onclick="window.location.href('main.html');">Iniciar sesión</button>
-                <a href="main.jsp">Siguiente pagina</a>
+                <button type="submit" class="btn btn-default center-block btn-login">Iniciar sesión</button>
             </form>
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
