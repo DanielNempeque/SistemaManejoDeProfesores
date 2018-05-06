@@ -8,6 +8,7 @@
 <%@page import="Modelo.AreaInvestigacion"%>
 <%@page import="Gestion.GestionAreaInvestigacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html>

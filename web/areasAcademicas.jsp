@@ -8,6 +8,7 @@
 <%@page import="Modelo.AreaAcademica"%>
 <%@page import="Gestion.GestionAreaAcademica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html>

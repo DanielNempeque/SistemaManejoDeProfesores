@@ -4,9 +4,17 @@
     Author     : Daniel Nempeque
 --%>
 
+<%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page session="true"%>
 <!DOCTYPE html>
+<%
+    HttpSession session1 = request.getSession();
+    Usuario us = (Usuario) session1.getAttribute("user");
+    if (us != null) {
+
+
+%>
 <html>
 
 <head>
@@ -127,4 +135,8 @@
 </body>
 
 </html>
+<% }else{
+        response.sendRedirect("index.jsp");
+   }
+%>
 
