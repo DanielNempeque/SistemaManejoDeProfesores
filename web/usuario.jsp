@@ -1,18 +1,12 @@
 <%-- 
-    Document   : main
-    Created on : 3/05/2018, 11:12:50 PM
+    Document   : usuario
+    Created on : 6/05/2018, 03:12:32 PM
     Author     : Daniel Nempeque
 --%>
 
-<%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session="true"%>
 <!DOCTYPE html>
-<%
-    HttpSession session1 = request.getSession();
-    Usuario us = (Usuario) session1.getAttribute("user");
-    if (us != null) {
-%>
+
 <html>
 
     <head>
@@ -36,7 +30,7 @@
         <!-- local css -->
 
         <link rel="stylesheet" href="public/css/animate.css">
-        <link rel="stylesheet" href="public/css/profesor.css">
+        <link rel="stylesheet" href="public/css/usuario.css">
         <link rel="stylesheet" href="public/css/navbar.css">
     </head>
 
@@ -97,44 +91,86 @@
 
         <!-- end navbar-->
 
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="public/img/edificio d.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h4>Evento 1</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
-                        </p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="public/img/puente gris.jpg" alt="First slide" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="public/img/lago.jpg" alt="First slide" alt="Third slide">
+        <div class="margin-all">
+            <ul class="nav nav-pills pills-bg">
+                <li class="nav-item">
+                    <a class="nav-link" href="#nuevoProf" data-toggle="tab"> Nuevo usuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#modifica" data-toggle="tab">Busca usuario</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane margin-small" id="nuevoProf">
+                    <form method="GET" action="" id="newUsr">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="docide">Id usuario</label>
+                                <input class="form-control" id="docide" type="text" name="docide" placeholder="id usuario">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="docide">Username</label>
+                                <input class="form-control" id="docide" type="text" name="username" placeholder="id usuario">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="docNum">Numero de documento</label>
+                                <input class="form-control" id="docNum" type="text" name="docNum" placeholder="Numero de documento">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="docTipo">Tipo de documento</label>
+                                <select class="form-control" id="docTipo">
+                                    <option>...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nombres">Nombres</label>
+                                <input class="form-control" id="nombres" type="text" name="nombres" placeholder="Nombres">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="apellidos">Apellidos</label>
+                                <input class="form-control" id="apellidos" type="text" name="apellidos" placeholder="Apellidos">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="tel">Telefono</label>
+                                <input class="form-control" id="tel" type="text" name="tel" placeholder="Telefono">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" id="checktelo">
+                                <label for="telO">Otro telefono</label>
+                                <input class="form-control" id="telO" type="text" name="telO" placeholder="Otro" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="tel">e-mail Sabana</label>
+                                <input class="form-control" id="e-sab" type="text" name="e-sab" placeholder="usuario@unisabana.edu.co">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" id="checkeo">
+                                <label for="corro">Otro correo</label>
+                                <input class="form-control" id="corro" type="text" name="corro" placeholder="usuario@example.com" disabled>
+                            </div>
+                        </div>
+                        <button type="button" id="newbtn" class="btn btn-lg btn-warning btn-mid">Crear usuario</button>
+                    </form>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
+        <script src="public/js/usuario.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
+
     </body>
 
 </html>
-<% } else {
-        response.sendRedirect("index.jsp");
-    }
-%>
-

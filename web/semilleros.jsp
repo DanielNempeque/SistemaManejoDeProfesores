@@ -1,17 +1,14 @@
 <%-- 
-    Document   : areasAcademicas
-    Created on : 3/05/2018, 11:18:16 PM
+    Document   : semilleros
+    Created on : 6/05/2018, 02:37:47 PM
     Author     : Daniel Nempeque
 --%>
 
 <%@page import="Modelo.Usuario"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.AreaAcademica"%>
-<%@page import="Gestion.GestionAreaAcademica"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
+
 <%
     HttpSession session1 = request.getSession();
     Usuario us = (Usuario) session1.getAttribute("user");
@@ -40,7 +37,7 @@
         <!-- local css -->
 
         <link rel="stylesheet" href="public/css/animate.css">
-        <link rel="stylesheet" href="public/css/areasAcademicas.css">
+        <link rel="stylesheet" href="public/css/vinculacion.css">
         <link rel="stylesheet" href="public/css/navbar.css">
     </head>
 
@@ -57,10 +54,10 @@
             <!--navbar items-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="main.jsp">Inicio<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown active">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Elementos
                         </a>
@@ -101,130 +98,108 @@
 
         <!-- end navbar-->
         <img class="img" src="public/img/Circuit-Wallpaper.jpg">
-        <div class="margin-all">
+        <div class="margin-all pos-absolute float-none">
             <h2>
-                Gestion de areas académicas
+                Gestion de semilleros
             </h2>
             <p>
                 Facultad de ingenieria
             </p>
-            <%
-                if (request.getAttribute("respuesta") != null) {
-                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
-                    request.setAttribute("respuesta", null);
-                }
-            %>
-            <h2> </h2>
         </div>
         <div class="margin-sides">
-            <form method="GET" action="filtroAreaAcademica">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input class="form-control" id="filt" type="text" name="filtro" placeholder="Filtro">
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-success ">Buscar</button>
-                    </div>
-                </div>
-            </form>
             <table class="table">
-                <caption>Lista de areas académicas</caption>
+                <caption>Lista de semilleros</caption>
                 <thead class="thead-blue">
                     <tr class="color-white">
                         <th scope="col">#Codigo</th>
-                        <th scope="col">Area Académica</th>
+                        <th scope="col">Semilleros</th>
                     </tr>
                 </thead>
                 <tbody class="color-black">
-
-                    <%
-                        GestionAreaAcademica gest = new GestionAreaAcademica();
-                        if (request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")) {
-                            ArrayList<AreaAcademica> areas = gest.listaAreas();
-                            if (areas != null) {
-                                for (AreaAcademica area : areas) {
-                                    out.print("<tr>");
-                                    out.print("<td class='text-justify'>" + area.getId() + "</td>");
-                                    out.print("<td class='text-justify'>" + area.getNombre() + "</td>");
-                                    out.print("</tr>");
-                                }
-                            }
-                        } else if (request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")) {
-                            String filtro = request.getAttribute("filtro").toString();
-                            ArrayList<AreaAcademica> areas = gest.listaAreasFiltro(filtro);
-                            if (areas != null) {
-                                for (AreaAcademica area : areas) {
-                                    out.print("<tr>");
-                                    out.print("<td class='text-justify'>" + area.getId() + "</td>");
-                                    out.print("<td class='text-justify'>" + area.getNombre() + "</td>");
-                                    out.print("</tr>");
-                                }
-                            }
-                        }
-
-
-                    %>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Planta</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Investigacion</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Catedra</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <div class=" margin-bottom">
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
-                    <a class="nav-link" href="#nueva" data-toggle="tab">Nueva area académica</a>
+                    <a class="nav-link" href="#nueva" data-toggle="tab">Nuevo semillero</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar semilleros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar area acadédmica</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#elimina" data-toggle="tab">Eliminar area académica</a>
+                    <a class="nav-link" href="#elimina" data-toggle="tab">Eliminar semilleros</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div id="nueva" class="tab-pane fade">
-                    <form class="margin-sides" action="crearAreaAcademica" method="GET">
+                    <form class="margin-sides">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="newid">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
                             </div>
                             <div class="col">
-                                <label for="inNom">Nombre:</label>
-                                <input type="text" class="form-control" placeholder="Nombre" id="inNom" name="newname">
+                                <label for="inNom">Nombre sermillero:</label>
+                                <input type="text" class="form-control" placeholder="Nombre semillero" id="inNom">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="titular">Profesor lider</label>
+                            <select class="form-control" id="titular">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
                         <br>
-                        <button type="submit" class="btn btn-lg btn-success btn-mid">Nueva area académica</button>
+                        <button type="button" class="btn btn-lg btn-success btn-mid">Nuevo semillero</button>
                     </form>
                 </div>
 
                 <div id="modifica" class="tab-pane fade">
-                    <form class="margin-sides" method="GET" action="modificarAreaAcademica" id="modificaform">
+                    <form class="margin-sides">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="modid">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
                             </div>
                             <div class="col">
-                                <label for="inNom">Nombre:</label>
-                                <input type="text" class="form-control" placeholder="Nombre" id="inNom" name="modname" >
+                                <label for="inNom">Nombre semillero:</label>
+                                <input type="text" class="form-control" placeholder="Nombre semillero" id="inNom">
                             </div>
                         </div>
                         <br>
-                        <button type="button" id="btnmod" class="btn btn-lg btn-warning btn-mid">Modificar area académica</button>
+                        <button type="button" class="btn btn-lg btn-warning btn-mid">Modificar semillero</button>
                     </form>
 
                 </div>
 
                 <div id="elimina" class="tab-pane fade">
-                    <form class="margin-sides" id="formdel" method="GET" action="eliminaAreaAcademica">
+                    <form class="margin-sides">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="delid">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
                             </div>
                         </div>
                         <br>
-                        <button type="button" id="btndel" class="btn btn-lg btn-danger btn-mid">Eliminar area académica</button>
+                        <button type="button" class="btn btn-lg btn-danger btn-mid">Eliminar semillero</button>
                     </form>
 
                 </div>
@@ -232,7 +207,6 @@
         </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
-        <script src="public/js/confirmacion.js"></script>
     </body>
 
 </html>
@@ -240,4 +214,5 @@
         response.sendRedirect("index.jsp");
     }
 %>
+
 
