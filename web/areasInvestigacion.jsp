@@ -4,6 +4,7 @@
     Author     : Daniel Nempeque
 --%>
 
+<%@page import="Modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.AreaInvestigacion"%>
 <%@page import="Gestion.GestionAreaInvestigacion"%>
