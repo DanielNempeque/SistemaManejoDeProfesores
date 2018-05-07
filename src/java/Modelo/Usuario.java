@@ -37,6 +37,20 @@ public class Usuario {
         this.tipoDoc = tipoDoc;
         this.idRol = idRol;
     }
+    public Usuario(String id, String nombre, String apellido, String usr, String correo, String correo2, String telefono, String telefono2, String documento, String tipoDoc, String idRol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usr = usr;
+        this.pass = pass;
+        this.correo = correo;
+        this.correo2 = correo2;
+        this.telefono = telefono;
+        this.telefono2 = telefono2;
+        this.documento = documento;
+        this.tipoDoc = tipoDoc;
+        this.idRol = idRol;
+    }
 
     public String getId() {
         return id;

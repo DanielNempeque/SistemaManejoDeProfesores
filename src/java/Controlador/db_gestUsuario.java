@@ -61,4 +61,75 @@ public class db_gestUsuario extends db_conexion{
         }        
         return null;
     }
+    public boolean newUser (Usuario user){
+        PreparedStatement pst = null;
+        int rs = 0;
+        try {
+            String query = "EXECUTE dbo_creaUsuario ?,?,?,?,?,?,?,?,?,?,?";
+            pst = getConnection().prepareStatement(query);
+            pst.setString(1, user.getId());
+            pst.setString(2, user.getNombre());
+            pst.setString(3, user.getApellido());
+            pst.setString(4, user.getUsr());
+            pst.setString(5, user.getCorreo());
+            pst.setString(6, user.getCorreo2());
+            pst.setString(7, user.getTelefono());
+            pst.setString(8, user.getTelefono2());
+            pst.setString(9, user.getDocumento());
+            pst.setString(10, user.getTipoDoc());
+            pst.setString(11, user.getIdRol());
+            rs = pst.executeUpdate();
+            if(rs!=0){
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+        }        
+        return false;
+    }
+    public String pass (String id){
+        String pass = "";
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String query = "EXECUTE dbo_muestraPass @ID=?";
+            pst = getConnection().prepareStatement(query);
+            pst.setString(1, id);
+
+            rs = pst.executeQuery();
+            while(rs.next()){
+                pass = rs.getString(1);
+            }
+            return pass;
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if(rs != null){
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+        }        
+        return null;
+    }
 }

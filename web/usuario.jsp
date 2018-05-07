@@ -4,9 +4,18 @@
     Author     : Daniel Nempeque
 --%>
 
+<%@page import="Modelo.Usuario"%>
+<%@page import="Modelo.Rol"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Gestion.GestionRol"%>
+<%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%
+    HttpSession session1 = request.getSession();
+    Usuario us = (Usuario) session1.getAttribute("user");
+    if (us != null) {
+%>
 <html>
 
     <head>
@@ -92,6 +101,14 @@
         <!-- end navbar-->
 
         <div class="margin-all">
+            <%
+                if (request.getAttribute("respuesta") != null) {
+                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
+                    out.print("<h4>" +"Su contraseña temporal es: "+request.getAttribute("pass") + "</h4>");
+                    request.setAttribute("respuesta", null);
+                    request.setAttribute("pass", null);
+                }
+            %>
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
                     <a class="nav-link" href="#nuevoProf" data-toggle="tab"> Nuevo usuario</a>
@@ -102,17 +119,32 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane margin-small" id="nuevoProf">
-                    <form method="GET" action="" id="newUsr">
+                    <form method="GET" action="crearUsuario" id="newUsr">
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-8">
                                 <label for="docide">Id usuario</label>
                                 <input class="form-control" id="docide" type="text" name="docide" placeholder="id usuario">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="tipoUsr">Tipo usuario</label>
+                                <select class="form-control" id="tipoDoc" name="tipoUsr">
+                                    <%
+                                        GestionRol gestionRol = new GestionRol();
+                                        ArrayList<Rol> roles = gestionRol.listaRoles();
+                                        if(roles != null){
+                                            for(Rol rl : roles){
+                                                out.print("<option>"+rl.getId()+"</option>");
+                                            }
+                                        }
+                                    
+                                    %>
+                                </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="docide">Username</label>
-                                <input class="form-control" id="docide" type="text" name="username" placeholder="id usuario">
+                                <input class="form-control" id="username" type="text" name="username" placeholder="id usuario">
                             </div>
                         </div>
 
@@ -123,9 +155,10 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="docTipo">Tipo de documento</label>
-                                <select class="form-control" id="docTipo">
-                                    <option>...</option>
-                                    <option>...</option>
+                                <select class="form-control" id="docTipo" name="docTipo">
+                                    <option>Cedula</option>
+                                    <option>TI</option>
+                                    <option>Pasaporte</option>
                                 </select>
                             </div>
 
@@ -148,7 +181,7 @@
                             <div class="form-group col-md-6">
                                 <input type="checkbox" id="checktelo">
                                 <label for="telO">Otro telefono</label>
-                                <input class="form-control" id="telO" type="text" name="telO" placeholder="Otro" disabled>
+                                <input class="form-control" id="telO" type="text" name="tel2" placeholder="Otro" disabled>
                             </div>
                         </div>
                         <div class="form-row">
@@ -174,3 +207,7 @@
     </body>
 
 </html>
+<% } else {
+        response.sendRedirect("index.jsp");
+    }
+%>
