@@ -79,13 +79,13 @@ public class GestionVinculacion {
             return "Ingrese un id valido";
         }
     }
-    public ArrayList<Vinculacion> listaVinculacion(){
+    public ArrayList<Vinculacion> listaVinculaciones(){
         ArrayList<Vinculacion> vinculacion = null;
         db_gestVinculacion gest = new db_gestVinculacion();
         vinculacion = gest.listaVinculacion();
         return vinculacion;
     }
-    public ArrayList<Vinculacion> listaVinculacionFiltro(String filtro){
+    public ArrayList<Vinculacion> listaVinculacionesFiltro(String filtro){
         ArrayList<Vinculacion> vinculacion = null;
         db_gestVinculacion gest = new db_gestVinculacion();
         vinculacion = gest.listaVinculacionFiltro(filtro);
