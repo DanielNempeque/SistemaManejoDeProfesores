@@ -38,13 +38,17 @@ public class GestionUsuario {
                         if (correo != null && correo != "") {
                             if (telefono != null & telefono != "") {
                                 if (documento != null && documento != "") {
-                                    Usuario usr = new Usuario(id, nombre, apellido, username, correo, correo2, telefono, telefono2, documento, tipodoc, idrol);
-                                    db_gestUsuario gest = new db_gestUsuario();
-                                    creado =gest.newUser(usr); 
-                                    if(creado){
-                                        return "Se creo correctamente";
+                                    if (this.verificaExiste(id)) {
+                                        Usuario usr = new Usuario(id, nombre, apellido, username, correo, correo2, telefono, telefono2, documento, tipodoc, idrol);
+                                        db_gestUsuario gest = new db_gestUsuario();
+                                        creado = gest.newUser(usr);
+                                        if (creado) {
+                                            return "Se creo correctamente";
+                                        } else {
+                                            return "No se ha podido crear";
+                                        }
                                     }else{
-                                        return "No se ha podido crear";
+                                        return "Ya existe el usuario";
                                     }
                                 } else {
                                     return "Ingrese un documento valido";
@@ -67,11 +71,23 @@ public class GestionUsuario {
         } else {
             return "Ingrese un id valido";
         }
+        
     }
-    public String pass(String id){
+
+    public String pass(String id) {
         String pass;
         db_gestUsuario gest = new db_gestUsuario();
         pass = gest.pass(id);
         return pass;
+    }
+
+    public boolean verificaExiste(String id) {
+        boolean existe = false;
+        db_gestUsuario gest = new db_gestUsuario();
+        Usuario usr = gest.buscaUsuario(id);
+        if (usr != null) {
+            existe = true;
+        }
+        return existe;
     }
 }

@@ -1,13 +1,11 @@
 <%-- 
-    Document   : centroCosto
-    Created on : 6/05/2018, 02:35:44 PM
+    Document   : escalafon
+    Created on : 7/05/2018, 10:35:51 PM
     Author     : Daniel Nempeque
 --%>
-
 <%@page import="Modelo.Usuario"%>
 <%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <%
     HttpSession session1 = request.getSession();
@@ -37,7 +35,7 @@
         <!-- local css -->
 
         <link rel="stylesheet" href="public/css/animate.css">
-        <link rel="stylesheet" href="public/css/centroCosto.css">
+        <link rel="stylesheet" href="public/css/escalafon.css">
         <link rel="stylesheet" href="public/css/navbar.css">
     </head>
 
@@ -95,12 +93,11 @@
                 </form>
             </div>
         </nav>
-
         <!-- end navbar-->
         <img class="img" src="public/img/Circuit-Wallpaper.jpg">
         <div class="margin-all pos-absolute float-none">
             <h2>
-                Gestion centro de costos
+                Gestion escalafón
             </h2>
             <p>
                 Facultad de ingenieria
@@ -108,11 +105,11 @@
         </div>
         <div class="margin-sides">
             <table class="table">
-                <caption>Lista de centros de costo</caption>
+                <caption>Lista de escalafones</caption>
                 <thead class="thead-blue">
                     <tr class="color-white">
                         <th scope="col">#Codigo</th>
-                        <th scope="col">Centro de costos</th>
+                        <th scope="col">Escalafón</th>
                     </tr>
                 </thead>
                 <tbody class="color-black">
@@ -134,13 +131,13 @@
         <div class=" margin-bottom">
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
-                    <a class="nav-link" href="#nueva" data-toggle="tab">Nuevo centro de costos</a>
+                    <a class="nav-link" href="#nueva" data-toggle="tab">Nuevo escalafón</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar centro de costos</a>
+                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar escalafón</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#elimina" data-toggle="tab">Eliminar centro de costos</a>
+                    <a class="nav-link" href="#elimina" data-toggle="tab">Eliminar escalafón</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -152,12 +149,12 @@
                                 <input type="text" class="form-control" placeholder="Codigo" id="inCod">
                             </div>
                             <div class="col">
-                                <label for="inNom">Nombre centro de costos:</label>
+                                <label for="inNom">Nombre escalafón:</label>
                                 <input type="text" class="form-control" placeholder="Nombre" id="inNom">
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-success btn-mid">Nuevo centro de costos</button>
+                        <button type="button" class="btn btn-lg btn-success btn-mid">Nuevo escalafón</button>
                     </form>
                 </div>
 
@@ -169,12 +166,12 @@
                                 <input type="text" class="form-control" placeholder="Codigo" id="inCod">
                             </div>
                             <div class="col">
-                                <label for="inNom">Nombre centro de costos:</label>
+                                <label for="inNom">Nombre escalafón:</label>
                                 <input type="text" class="form-control" placeholder="Nombre" id="inNom">
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-warning btn-mid">Modificar centro de costos</button>
+                        <button type="button" class="btn btn-lg btn-warning btn-mid">Modificar escalafón</button>
                     </form>
 
                 </div>
@@ -188,7 +185,7 @@
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-danger btn-mid">Eliminar centro de costos</button>
+                        <button type="button" class="btn btn-lg btn-danger btn-mid">Eliminar escalafón</button>
                     </form>
 
                 </div>
