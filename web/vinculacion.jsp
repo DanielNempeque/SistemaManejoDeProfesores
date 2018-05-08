@@ -40,7 +40,7 @@
         <!-- local css -->
 
         <link rel="stylesheet" href="public/css/animate.css">
-        <link rel="stylesheet" href="public/css/areasAcademicas.css">
+        <link rel="stylesheet" href="public/css/vinculacion.css">
         <link rel="stylesheet" href="public/css/navbar.css">
     </head>
 
