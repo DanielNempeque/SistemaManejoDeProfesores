@@ -20,7 +20,7 @@ public class db_gestEscalafon extends db_conexion{
         PreparedStatement pst = null;
         int rs = 0;
         try {
-           String query = "";
+           String query = "EXECUTE dbo_crearEscalafon @ID = ?, @TIPO = ?";
            pst = getConnection().prepareStatement(query);
            pst.setString(1,escalafon.getId());
            pst.setString(2, escalafon.getTipo());
@@ -50,7 +50,7 @@ public class db_gestEscalafon extends db_conexion{
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "";
+            String query = "EXECUTE dbo_buscaEscalafon @ID = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, id);
             rs = pst.executeQuery();
@@ -80,12 +80,49 @@ public class db_gestEscalafon extends db_conexion{
         return escalafon;
     }
     public ArrayList<Escalafon> listaEscalafon(){
+        ArrayList<Escalafon> escalafones = new ArrayList<Escalafon>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String query = "EXECUTE dbo_listarEscalafon";
+            pst = getConnection().prepareStatement(query);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String ide = rs.getString(1);
+                String Tipo = rs.getString(2);
+                Escalafon es = new Escalafon(ide, Tipo);
+                escalafones.add(es);
+            }
+            return escalafones;
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null){
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+            
+        }
+        return escalafones;
+    }
+    public ArrayList<Escalafon> listaEscalafonFiltro(String filtro){
         ArrayList<Escalafon> escalafones = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "";
+            String query = "EXECUTE dbo_listarEscalafonFiltro @FILTRO = ?";
             pst = getConnection().prepareStatement(query);
+            pst.setString(1, filtro);
             rs = pst.executeQuery();
             while(rs.next()){
                 String ide = rs.getString(1);
@@ -112,5 +149,33 @@ public class db_gestEscalafon extends db_conexion{
             
         }
         return escalafones;
+    }
+    public boolean modificaEscalafon(Escalafon escala){
+        PreparedStatement pst = null;
+        try {
+            int rs = 0;
+            String query = "EXECUTE dbo_modificaEscalafon @ID = ?, @TIPO = ?";
+            pst = getConnection().prepareStatement(query);
+            pst.setString(1, escala.getId());
+            pst.setString(2, escala.getTipo());
+            rs = pst.executeUpdate();
+            if(rs != 0){
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+        }
+        return false;
     }
 }

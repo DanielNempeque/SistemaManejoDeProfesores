@@ -3,6 +3,9 @@
     Created on : 7/05/2018, 10:35:51 PM
     Author     : Daniel Nempeque
 --%>
+<%@page import="Gestion.GestionEscalafon"%>
+<%@page import="Modelo.Escalafon"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.Usuario"%>
 <%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -102,8 +105,24 @@
             <p>
                 Facultad de ingenieria
             </p>
+            <%
+                if (request.getAttribute("respuesta") != null) {
+                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
+                    request.setAttribute("respuesta", null);
+                }
+            %>
         </div>
         <div class="margin-sides">
+            <form method="GET" action="filtroEscalafon">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input class="form-control" id="filt" type="text" name="filtro" placeholder="Filtro">
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success ">Buscar</button>
+                    </div>
+                </div>
+            </form>
             <table class="table">
                 <caption>Lista de escalafones</caption>
                 <thead class="thead-blue">
@@ -113,18 +132,33 @@
                     </tr>
                 </thead>
                 <tbody class="color-black">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Planta</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Investigacion</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Catedra</td>
-                    </tr>
+                    <%
+                        GestionEscalafon gest = new GestionEscalafon();
+                        if (request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")) {
+                            ArrayList<Escalafon> escalafones = gest.listarEscalafon();
+                            if (escalafones != null) {
+                                for (Escalafon esc : escalafones) {
+                                    out.print("<tr>");
+                                    out.print("<td class='text-justify'>" + esc.getId() + "</td>");
+                                    out.print("<td class='text-justify'>" + esc.getTipo() + "</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                        } else if (request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")) {
+                            String filtro = request.getAttribute("filtro").toString();
+                            ArrayList<Escalafon> escalafones = gest.listarEscalafonFiltro(filtro);
+                            if (escalafones != null) {
+                                for (Escalafon esc : escalafones) {
+                                    out.print("<tr>");
+                                    out.print("<td class='text-justify'>" + esc.getId() + "</td>");
+                                    out.print("<td class='text-justify'>" + esc.getTipo() + "</td>");
+                                    out.print("</tr>");
+                                }
+                            }
+                        }
+
+
+                    %>
                 </tbody>
             </table>
         </div>
@@ -142,19 +176,19 @@
             </ul>
             <div class="tab-content">
                 <div id="nueva" class="tab-pane fade">
-                    <form class="margin-sides">
+                    <form class="margin-sides" method="GET" action="crearEscalafon">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="inCod">
                             </div>
                             <div class="col">
                                 <label for="inNom">Nombre escalafón:</label>
-                                <input type="text" class="form-control" placeholder="Nombre" id="inNom">
+                                <input type="text" class="form-control" placeholder="Nombre" id="inNom" name="inNom">
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-success btn-mid">Nuevo escalafón</button>
+                        <button type="submit" class="btn btn-lg btn-success btn-mid">Nuevo escalafón</button>
                     </form>
                 </div>
 
