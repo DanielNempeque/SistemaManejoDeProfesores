@@ -193,19 +193,19 @@
                 </div>
 
                 <div id="modifica" class="tab-pane fade">
-                    <form class="margin-sides">
+                    <form class="margin-sides" id="modificaform" action="modificaEscalafon" method="GET">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
-                                <input type="text" class="form-control" placeholder="Codigo" id="inCod">
+                                <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="modid">
                             </div>
                             <div class="col">
                                 <label for="inNom">Nombre escalafón:</label>
-                                <input type="text" class="form-control" placeholder="Nombre" id="inNom">
+                                <input type="text" class="form-control" placeholder="Nombre" id="inNom" name="modname">
                             </div>
                         </div>
                         <br>
-                        <button type="button" class="btn btn-lg btn-warning btn-mid">Modificar escalafón</button>
+                        <button type="button" id="btnmod" class="btn btn-lg btn-warning btn-mid">Modificar escalafón</button>
                     </form>
 
                 </div>
@@ -225,6 +225,7 @@
                 </div>
             </div>
         </div>
+        <script src="public/js/confirmacion.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
     </body>

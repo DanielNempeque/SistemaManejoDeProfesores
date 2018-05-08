@@ -151,6 +151,7 @@ public class db_gestEscalafon extends db_conexion{
         return escalafones;
     }
     public boolean modificaEscalafon(Escalafon escala){
+        boolean res = false;
         PreparedStatement pst = null;
         try {
             int rs = 0;
@@ -160,8 +161,9 @@ public class db_gestEscalafon extends db_conexion{
             pst.setString(2, escala.getTipo());
             rs = pst.executeUpdate();
             if(rs != 0){
-                return true;
+               res = true;
             }
+            return  res;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         } finally {
@@ -176,6 +178,6 @@ public class db_gestEscalafon extends db_conexion{
                 System.err.println("ERROR: " + e);
             }
         }
-        return false;
+        return res;
     }
 }
