@@ -71,8 +71,8 @@
                             <a class="dropdown-item" href="vinculacion.jsp">Vinculación</a>
                             <a class="dropdown-item" href="titulacion.jsp">Titulación</a>
                             <a class="dropdown-item" href="escalafon.jsp">Escalafón</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="centroCosto.jsp">
-                                <div class="dropdown-divider"></div>
                                 Centros de costo</a>
                             <a class="dropdown-item" href="semilleros.jsp">Semilleros</a>
                         </div>

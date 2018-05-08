@@ -57,10 +57,10 @@
             <!--navbar items-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="main.jsp">Inicio<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Elementos
                         </a>
@@ -71,8 +71,8 @@
                             <a class="dropdown-item" href="vinculacion.jsp">Vinculación</a>
                             <a class="dropdown-item" href="titulacion.jsp">Titulación</a>
                             <a class="dropdown-item" href="escalafon.jsp">Escalafón</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="centroCosto.jsp">
-                                <div class="dropdown-divider"></div>
                                 Centros de costo</a>
                             <a class="dropdown-item" href="semilleros.jsp">Semilleros</a>
                         </div>

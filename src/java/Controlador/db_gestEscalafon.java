@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.Escalafon;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -77,5 +78,39 @@ public class db_gestEscalafon extends db_conexion{
             
         }
         return escalafon;
+    }
+    public ArrayList<Escalafon> listaEscalafon(){
+        ArrayList<Escalafon> escalafones = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String query = "";
+            pst = getConnection().prepareStatement(query);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                String ide = rs.getString(1);
+                String Tipo = rs.getString(2);
+                Escalafon es = new Escalafon(ide, Tipo);
+                escalafones.add(es);
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null){
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+            
+        }
+        return escalafones;
     }
 }
