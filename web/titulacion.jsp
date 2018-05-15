@@ -40,7 +40,7 @@
         <!-- local css -->
 
         <link rel="stylesheet" href="public/css/animate.css">
-        <link rel="stylesheet" href="public/css/vinculacion.css">
+        <link rel="stylesheet" href="public/css/titulacion.css">
         <link rel="stylesheet" href="public/css/navbar.css">
     </head>
 
@@ -103,7 +103,7 @@
         <img class="img" src="public/img/Circuit-Wallpaper.jpg">
         <div class="margin-all">
             <h2>
-                Gestion Vinculación
+                Gestion Titulación
             </h2>
             <p>
                 Facultad de ingenieria
@@ -117,7 +117,7 @@
             <h2> </h2>
         </div>
         <div class="margin-sides">
-            <form method="GET" action="filtroVinculacion">
+            <form method="GET" action="filtroTitulacion">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <input class="form-control" id="filt" type="text" name="filtro" placeholder="Filtro">
@@ -128,11 +128,11 @@
                 </div>
             </form>
             <table class="table">
-                <caption>Lista de vinculaciones</caption>
+                <caption>Lista de Titulaciones</caption>
                 <thead class="thead-blue">
                     <tr class="color-white">
                         <th scope="col">#Codigo</th>
-                        <th scope="col">Tipo vinculación</th>
+                        <th scope="col">Tipo titulación</th>
                     </tr>
                 </thead>
                 <tbody class="color-black">
