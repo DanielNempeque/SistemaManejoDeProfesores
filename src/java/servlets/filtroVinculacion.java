@@ -5,7 +5,6 @@
  */
 package servlets;
 
-import Gestion.GestionVinculacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Santiago
+ * @author Daniel Nempeque
  */
-@WebServlet(name = "CrearVinculacion", urlPatterns = {"/CrearVinculacion"})
-public class CrearVinculacion extends HttpServlet {
+@WebServlet(name = "filtroVinculacion", urlPatterns = {"/filtroVinculacion"})
+public class filtroVinculacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,11 +33,9 @@ public class CrearVinculacion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("newid");
-            String tipoVinculacion = request.getParameter("newname");
-            GestionVinculacion gest = new GestionVinculacion();
-            String respuesta = gest.nuevaVinculacion(id, tipoVinculacion);
-            request.setAttribute("respuesta", respuesta);
+            /* TODO output your page here. You may use following sample code. */
+            String filtro = request.getParameter("filtro");
+            request.setAttribute("filtro", filtro);
             request.getRequestDispatcher("/vinculacion.jsp").forward(request, response);
         }
     }
