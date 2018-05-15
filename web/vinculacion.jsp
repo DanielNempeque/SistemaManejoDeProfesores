@@ -1,5 +1,5 @@
 <%-- 
-    Document   : areasAcademicas
+    Document   : Vinculaciones
     Created on : 3/05/2018, 11:18:16 PM
     Author     : Daniel Nempeque
 --%>
@@ -181,7 +181,7 @@
             </ul>
             <div class="tab-content">
                 <div id="nueva" class="tab-pane fade">
-                    <form class="margin-sides" action="crearAreaAcademica" method="GET">
+                    <form class="margin-sides" action="CrearVinculacion" method="GET">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
@@ -198,7 +198,7 @@
                 </div>
 
                 <div id="modifica" class="tab-pane fade">
-                    <form class="margin-sides" method="GET" action="modificarAreaAcademica" id="modificaform">
+                    <form class="margin-sides" method="GET" action="modificarVinculacion" id="modificaform">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
@@ -216,7 +216,7 @@
                 </div>
 
                 <div id="elimina" class="tab-pane fade">
-                    <form class="margin-sides" id="formdel" method="GET" action="eliminaAreaAcademica">
+                    <form class="margin-sides" id="formdel" method="GET" action="eliminaVinculacion">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>

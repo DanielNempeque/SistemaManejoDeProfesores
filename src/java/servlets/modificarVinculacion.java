@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Gestion.GestionAreaAcademica;
 import Gestion.GestionVinculacion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Santiago
+ * @author Daniel Nempeque
  */
-@WebServlet(name = "CrearVinculacion", urlPatterns = {"/CrearVinculacion"})
-public class CrearVinculacion extends HttpServlet {
+@WebServlet(name = "modificarVinculacion", urlPatterns = {"/modificarVinculacion"})
+public class modificarVinculacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +35,10 @@ public class CrearVinculacion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("newid");
-            String tipoVinculacion = request.getParameter("newname");
+            String id = request.getParameter("modid");
+            String tipoVinculacion = request.getParameter("modname");
             GestionVinculacion gest = new GestionVinculacion();
-            String respuesta = gest.nuevaVinculacion(id, tipoVinculacion);
+            String respuesta = gest.editarVinculacion(id, tipoVinculacion);
             request.setAttribute("respuesta", respuesta);
             request.getRequestDispatcher("/vinculacion.jsp").forward(request, response);
         }
