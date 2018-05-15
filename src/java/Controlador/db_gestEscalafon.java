@@ -180,4 +180,33 @@ public class db_gestEscalafon extends db_conexion{
         }
         return res;
     }
+    public boolean eliminaEscalafon(String id){
+        boolean res = false;
+        PreparedStatement pst = null;
+        int rs = 0;
+        try {
+            String query = "EXECUTE dbo_eliminaEscalafon @ID = ?";
+            pst = getConnection().prepareStatement(query);
+            pst.setString(1, id);
+            rs = pst.executeUpdate();
+            if(rs != 0){
+               res = true;
+            }
+            return  res;
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+        }
+        return res;
+    }
 }
