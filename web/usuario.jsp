@@ -108,10 +108,10 @@
                     request.setAttribute("respuesta", null);
                     request.setAttribute("pass", null);
                 }
-            %>
+            %>            
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
-                    <a class="nav-link" href="#nuevoProf" data-toggle="tab"> Nuevo usuario</a>
+                    <a class="nav-link" href="#nuevoProf" data-toggle="tab" id="current"> Nuevo usuario</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#modifica" data-toggle="tab">Busca usuario</a>
@@ -200,7 +200,7 @@
                 </div>
             </div>
         </div>
-        <script src="public/js/usuario.js"></script>
+        <script src="public/js/usuario.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
 

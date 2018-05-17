@@ -103,7 +103,7 @@
         <div class="margin-all">
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
-                    <a class="nav-link" href="#nuevoProf" data-toggle="tab"> Nuevo profesor</a>
+                    <a class="nav-link" href="#nuevoProf" data-toggle="tab" id="current"> Nuevo profesor</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#modifica" data-toggle="tab">Manejo profesores</a>
@@ -111,73 +111,69 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade margin-small" id="nuevoProf">
-                    <form>
+                    <form method="GET" action="crearProfesor">
 
                         <div class="form-row">
-                            <div class="form-group col-md-8">
-                                <label for="docNum">Numero de documento</label>
-                                <input class="form-control" id="docNum" type="text" name="docNum" placeholder="Numero de documento">
+                            <div class="form-group col-md-12">
+                                <label for="docNum">Id usuario</label>
+                                <input class="form-control" id="docNum" type="text" name="idNum" placeholder="Id usuario">
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="docTipo">Tipo de documento</label>
-                                <select class="form-control" id="docTipo">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="docNum">Vinculacion</label>
+                                <select class="form-control" id="vinc" name="tipoVinc">
+                                    <option>...</option>
                                     <option>...</option>
                                     <option>...</option>
                                 </select>
                             </div>
-
-                        </div>
-                        <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="nombres">Nombres</label>
-                                <input class="form-control" id="nombres" type="text" name="nombres" placeholder="Nombres">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="apellidos">Apellidos</label>
-                                <input class="form-control" id="apellidos" type="text" name="apellidos" placeholder="Apellidos">
+                                <label for="docNum">Titulacion</label>
+                                <select class="form-control" id="vinc" name="tipoTitu">
+                                    <option>...</option>
+                                    <option>...</option>
+                                    <option>...</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="tel">Telefono</label>
-                                <input class="form-control" id="tel" type="text" name="tel" placeholder="Telefono">
+                                <label for="docNum">Area academica</label>
+                                <select class="form-control" id="vinc" name="tipoArea">
+                                    <option>...</option>
+                                    <option>...</option>
+                                    <option>...</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="checkbox" id="checktelo">
-                                <label for="telO">Otro telefono</label>
-                                <input class="form-control" id="telO" type="text" name="telO" placeholder="Otro" disabled>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="tel">e-mail Sabana</label>
-                                <input class="form-control" id="e-sab" type="text" name="e-sab" placeholder="usuario@unisabana.edu.co">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="checkbox" id="checkeo">
-                                <label for="corro">Otro correo</label>
-                                <input class="form-control" id="corro" type="text" name="corro" placeholder="usuario@example.com" disabled>
+                                <label for="docNum">Escalafón</label>
+                                <select class="form-control" id="vinc" name="esca">
+                                    <option>...</option>
+                                    <option>...</option>
+                                    <option>...</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="fechaingreso">Fecha ingreso</label>
                                 <div class="center-block">
-                                    <input id="fechaingreso" width="276">
+                                    <input id="fechaingreso" width="276" name="fechai">
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
                                 <input type="checkbox" id="checkfechaegreso">
                                 <label for="fechaegreso">Fecha egreso</label>
                                 <div id="picker" class="display-none">
-                                    <input id="fechaegreso" width="276">
+                                    <input id="fechaegreso" width="276" name="fechae">
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="estado">Estado</label>
-                                <select class="form-control" id="estado">
-                                    <option>...</option>
-                                    <option>...</option>
+                                <select class="form-control" id="estado" name="estado">
+                                    <option>Activo</option>
+                                    <option>Inactivo</option>
                                 </select>
                             </div>
                         </div>
@@ -190,6 +186,7 @@
                                 </div>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-lg btn-success btn-mid">Crear profesor</button>
                     </form>
                 </div>
             </div>
@@ -200,7 +197,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
         <script src="public/js/datepicker.js"></script>
-        <script src="public/js/pruebas.js"></script>
+        <script src="public/js/profesor.js"></script>
     </body>
 
 </html>
