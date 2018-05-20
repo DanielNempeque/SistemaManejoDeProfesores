@@ -42,6 +42,7 @@ public class login extends HttpServlet {
             GestionUsuario gestion = new GestionUsuario();
             Usuario usr = gestion.login(user, password);
             HttpSession sesion = request.getSession();
+            sesion.setMaxInactiveInterval(60);
             String respuesta;
             if(usr != null){
                 sesion.setAttribute("user", usr);
