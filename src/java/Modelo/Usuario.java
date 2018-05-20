@@ -23,6 +23,9 @@ public class Usuario {
     private String tipoDoc;
     private String idRol;
 
+    public Usuario(){
+        
+    }
     public Usuario(String id, String nombre, String apellido, String usr, String pass, String correo, String correo2, String telefono, String telefono2, String documento, String tipoDoc, String idRol) {
         this.id = id;
         this.nombre = nombre;

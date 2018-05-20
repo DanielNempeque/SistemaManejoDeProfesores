@@ -20,7 +20,7 @@ public class db_gestVinculacion extends db_conexion{
         PreparedStatement pst = null;
         try {
             int rs = 0;
-            String query = "EXECUTE CREA_VINCULACION @ID=?,@TIPOVINCULACION=?";
+            String query = "EXECUTE dbo_creaVinculacion @ID=?,@TIPOVINCULACION=?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, vinculacion.getId());
             pst.setString(2, vinculacion.getTipoVinculacion());
@@ -50,7 +50,7 @@ public class db_gestVinculacion extends db_conexion{
         PreparedStatement pst = null;
         try {
             int rs = 0;
-            String query = "EXECUTE modifica_Vinculacion @ID = ?, @TIPOVINCULACION = ?";
+            String query = "EXECUTE dbo_modificaVinculacion @ID = ?, @TIPOVINCULACION = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, vinculacion.getId());
             pst.setString(2, vinculacion.getTipoVinculacion());
@@ -79,7 +79,7 @@ public class db_gestVinculacion extends db_conexion{
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "EXECUTE busca_Viculacion @ID = ?";
+            String query = "EXECUTE dbo_buscaVinculacion @ID = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, id);
             rs = pst.executeQuery();
@@ -111,7 +111,7 @@ public class db_gestVinculacion extends db_conexion{
         PreparedStatement pst = null;
         int rs = 0;
         try {
-            String query = "EXECUTE elimina_Vinculacion @ID = ?";
+            String query = "EXECUTE dbo_eliminaVinculacion @ID = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, vinculacion.getId());
             rs = pst.executeUpdate();
@@ -139,7 +139,7 @@ public class db_gestVinculacion extends db_conexion{
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "EXECUTE lista_Vinculacion";
+            String query = "EXECUTE dbo_listaVinculacion";
             pst = getConnection().prepareStatement(query);
             rs = pst.executeQuery();
             while(rs.next()){
@@ -173,7 +173,7 @@ public class db_gestVinculacion extends db_conexion{
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "EXECUTE filtro_Vinculacion @FILTRO = ?";
+            String query = "EXECUTE dbo_listaVinculacionFiltro @FILTRO = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, filtro);
             rs = pst.executeQuery();

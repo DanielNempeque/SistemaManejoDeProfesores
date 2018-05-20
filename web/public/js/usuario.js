@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $('#current').click();
+
     $('input[type=checkbox]').on('change', function() {
           if ($(this).is(':checked') ) {
               if($(this).prop("id") == 'checktelo'){
