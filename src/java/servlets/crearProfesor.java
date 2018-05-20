@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Gestion.GestionProfesor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,6 +43,11 @@ public class crearProfesor extends HttpServlet {
             String fecha_ingreso =  request.getParameter("fechai");
             String fecha_egreso =  request.getParameter("fechae");
             String estado = request.getParameter("estado");
+            String respuesta;
+            GestionProfesor gest = new GestionProfesor();
+            respuesta = gest.crearProfesor(id, vinculacion, titulacion, area, escalafon, fecha_ingreso, fecha_egreso, estado, id);
+            request.setAttribute("respuesta", respuesta);
+            request.getRequestDispatcher("/profesor.jsp").forward(request, response);
             
         }
     }

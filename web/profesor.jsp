@@ -111,6 +111,12 @@
 
         <!-- end navbar-->
         <div class="margin-all">
+            <%
+                if (request.getAttribute("respuesta") != null) {
+                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
+                    request.setAttribute("respuesta", null);
+                }
+            %>   
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
                     <a class="nav-link" href="#nuevoProf" data-toggle="tab" id="current"> Nuevo profesor</a>
