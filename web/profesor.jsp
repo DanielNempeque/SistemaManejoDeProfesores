@@ -4,6 +4,16 @@
     Author     : Daniel Nempeque
 --%>
 
+<%@page import="Gestion.GestionUsuario"%>
+<%@page import="Modelo.Profesor"%>
+<%@page import="Gestion.GestionProfesor"%>
+<%@page import="Modelo.Escalafon"%>
+<%@page import="Gestion.GestionEscalafon"%>
+<%@page import="Modelo.AreaAcademica"%>
+<%@page import="Gestion.GestionAreaAcademica"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Modelo.Vinculacion"%>
+<%@page import="Gestion.GestionVinculacion"%>
 <%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -106,7 +116,10 @@
                     <a class="nav-link" href="#nuevoProf" data-toggle="tab" id="current"> Nuevo profesor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#modifica" data-toggle="tab">Manejo profesores</a>
+                    <a class="nav-link" href="#busca" data-toggle="tab">Buscar profesor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar profesor</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -123,9 +136,14 @@
                             <div class="form-group col-md-6">
                                 <label for="docNum">Vinculacion</label>
                                 <select class="form-control" id="vinc" name="tipoVinc">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
+                                    <%
+                                        GestionVinculacion vinc = new GestionVinculacion();
+                                        ArrayList<Vinculacion> vinculaciones = vinc.listaVinculaciones();
+                                        for (Vinculacion vi : vinculaciones) {
+                                            out.print("<option>" + vi.getId() + "</option>");
+                                        }
+
+                                    %>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
@@ -141,17 +159,25 @@
                             <div class="form-group col-md-6">
                                 <label for="docNum">Area academica</label>
                                 <select class="form-control" id="vinc" name="tipoArea">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
+                                    <%                                        GestionAreaAcademica area = new GestionAreaAcademica();
+                                        ArrayList<AreaAcademica> areas = area.listaAreas();
+                                        for (AreaAcademica ar : areas) {
+                                            out.print("<option>" + ar.getId() + "</option>");
+                                        }
+
+                                    %>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="docNum">Escalafón</label>
                                 <select class="form-control" id="vinc" name="esca">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
+                                    <%                                        GestionEscalafon esc = new GestionEscalafon();
+                                        ArrayList<Escalafon> escalafones = esc.listarEscalafon();
+                                        for (Escalafon es : escalafones) {
+                                            out.print("<option>" + es.getId() + "</option>");
+                                        }
+
+                                    %>
                                 </select>
                             </div>
                         </div>
@@ -189,6 +215,60 @@
                         <button type="submit" class="btn btn-lg btn-success btn-mid">Crear profesor</button>
                     </form>
                 </div>
+                <div class="tab-pane fade margin-small" id="busca">
+                    <table class="table">
+                        <caption>Profesores</caption>
+                        <thead class="thead-blue">
+                            <tr class="color-white">
+                                <th scope="col">#Codigo</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Tipo vinculacion</th>
+                                <th scope="col">Fecha ingreso</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="color-black">
+
+                            <%                                GestionProfesor gest = new GestionProfesor();
+                                GestionUsuario gestus = new GestionUsuario();
+                                if (request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")) {
+                                    ArrayList<Profesor> profesores = gest.listarProfesor();
+                                    ArrayList<Usuario> usuarios = gestus.listarUsuarios();
+                                    if (areas != null) {
+                                        for (Usuario arus : usuarios) {
+                                            for (Profesor pr : profesores) {
+                                                out.print("<tr>");
+                                                out.print("<td class='text-justify'>" + pr.getId() + "</td>");
+                                                out.print("<td class='text-justify'>" + arus.getNombre() + arus.getApellido() + "</td>");
+                                                out.print("<td class='text-justify'>" + pr.getVinculacion() + "</td>");
+                                                out.print("<td class='text-justify'>" + pr.getFecha_ingreso() + "</td>");
+                                                out.print("<td class='text-justify'>" + pr.getEstado() + "</td>");
+                                                out.print("</tr>");
+                                            }
+                                        }
+                                    }
+                                } else if (request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")) {
+                                    String filtro = request.getAttribute("filtro").toString();
+                                    ArrayList<Profesor> profesores = gest.listarProfesor();
+                                    if (areas != null) {
+                                        for (Profesor pr : profesores) {
+                                            out.print("<tr>");
+                                            out.print("<td class='text-justify'>" + pr.getId() + "</td>");
+                                            out.print("<td class='text-justify'>" + pr.getVinculacion() + "</td>");
+                                            out.print("<td class='text-justify'>" + pr.getFecha_ingreso() + "</td>");
+                                            out.print("<td class='text-justify'>" + pr.getEstado() + "</td>");
+                                            out.print("</tr>");
+                                        }
+                                    }
+                                }
+
+                            %>
+                        </tbody>
+                    </table>
+                </div> 
+                <div class="tab-pane fade margin-small" id="modifica">
+
+                </div>    
             </div>
         </div>
 

@@ -34,4 +34,85 @@ public class Profesor extends Usuario{
         this.idUsr = idUsr;
     }
     
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFecha_ingreso() {
+        return fecha_ingreso;
+    }
+
+    public void setFecha_ingreso(String fecha_ingreso) {
+        this.fecha_ingreso = fecha_ingreso;
+    }
+
+    public String getFecha_egreso() {
+        return fecha_egreso;
+    }
+
+    public void setFecha_egreso(String fecha_egreso) {
+        this.fecha_egreso = fecha_egreso;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getVinculacion() {
+        return vinculacion;
+    }
+
+    public void setVinculacion(String vinculacion) {
+        this.vinculacion = vinculacion;
+    }
+
+    public String getTitulacion() {
+        return titulacion;
+    }
+
+    public void setTitulacion(String titulacion) {
+        this.titulacion = titulacion;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getEscalafon() {
+        return escalafon;
+    }
+
+    public void setEscalafon(String escalafon) {
+        this.escalafon = escalafon;
+    }
+
+    public String getIdUsr() {
+        return idUsr;
+    }
+
+    public void setIdUsr(String idUsr) {
+        this.idUsr = idUsr;
+    }
+    
+    
 }

@@ -7,6 +7,7 @@ package Gestion;
 
 import Controlador.db_gestUsuario;
 import Modelo.Usuario;
+import java.util.ArrayList;
 
 /**
  *
@@ -38,7 +39,7 @@ public class GestionUsuario {
                         if (correo != null && correo != "") {
                             if (telefono != null & telefono != "") {
                                 if (documento != null && documento != "") {
-                                    if (this.verificaExiste(id)) {
+                                    if (!this.verificaExiste(id)) {
                                         Usuario usr = new Usuario(id, nombre, apellido, username, correo, correo2, telefono, telefono2, documento, tipodoc, idrol);
                                         db_gestUsuario gest = new db_gestUsuario();
                                         creado = gest.newUser(usr);
@@ -74,6 +75,12 @@ public class GestionUsuario {
         
     }
 
+    public ArrayList<Usuario> listarUsuarios(){
+        ArrayList<Usuario> usuarios = null;
+        db_gestUsuario gest = new db_gestUsuario();
+        usuarios = gest.listaUsuarios();
+        return usuarios;
+    }
     public String pass(String id) {
         String pass;
         db_gestUsuario gest = new db_gestUsuario();
