@@ -111,10 +111,20 @@
 
         <!-- end navbar-->
         <div class="margin-all">
+            <%
+                if (request.getAttribute("respuesta") != null) {
+                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
+                    request.setAttribute("respuesta", null);
+                }
+            %>   
             <ul class="nav nav-pills pills-bg">
+                <%
+                    if (us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")) {
+                %>
                 <li class="nav-item">
                     <a class="nav-link" href="#nuevoProf" data-toggle="tab" id="current"> Nuevo profesor</a>
                 </li>
+                <%}%>
                 <li class="nav-item">
                     <a class="nav-link" href="#busca" data-toggle="tab">Buscar profesor</a>
                 </li>
@@ -122,7 +132,13 @@
                     <a class="nav-link" href="#modifica" data-toggle="tab">Modificar profesor</a>
                 </li>
             </ul>
+
             <div class="tab-content">
+                <%
+                    GestionAreaAcademica area = new GestionAreaAcademica();
+                    ArrayList<AreaAcademica> areas = area.listaAreas();
+                    if (us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")) {
+                %>
                 <div class="tab-pane fade margin-small" id="nuevoProf">
                     <form method="GET" action="crearProfesor">
 
@@ -159,9 +175,7 @@
                             <div class="form-group col-md-6">
                                 <label for="docNum">Area academica</label>
                                 <select class="form-control" id="vinc" name="tipoArea">
-                                    <%                                        GestionAreaAcademica area = new GestionAreaAcademica();
-                                        ArrayList<AreaAcademica> areas = area.listaAreas();
-                                        for (AreaAcademica ar : areas) {
+                                    <%                                        for (AreaAcademica ar : areas) {
                                             out.print("<option>" + ar.getId() + "</option>");
                                         }
 
@@ -215,6 +229,12 @@
                         <button type="submit" class="btn btn-lg btn-success btn-mid">Crear profesor</button>
                     </form>
                 </div>
+                <%                    } else {
+
+                    }
+                %>                
+
+
                 <div class="tab-pane fade margin-small" id="busca">
                     <table class="table">
                         <caption>Profesores</caption>
@@ -229,7 +249,8 @@
                         </thead>
                         <tbody class="color-black">
 
-                            <%                                GestionProfesor gest = new GestionProfesor();
+                            <%
+                                GestionProfesor gest = new GestionProfesor();
                                 GestionUsuario gestus = new GestionUsuario();
                                 if (request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")) {
                                     ArrayList<Profesor> profesores = gest.listarProfesor();
