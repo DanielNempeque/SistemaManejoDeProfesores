@@ -1,13 +1,16 @@
-                                                                                 <%-- 
-    Document   : Vinculaciones
+<%@page import="Modelo.Titulacion"%>
+<%@page import="Gestion.GestionTitulacion"%>
+<%@page import="Gestion.GestionTitulacion"%>
+<%-- 
+    Document   : Titulaciones
     Created on : 3/05/2018, 11:18:16 PM
     Author     : Daniel Nempeque
 --%>
 
 <%@page import="Modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.Vinculacion"%>
-<%@page import="Gestion.GestionVinculacion"%>
+<%@page import="Modelo.Titulacion"%>
+<%@page import="Gestion.GestionTitulacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <!DOCTYPE html>
@@ -138,25 +141,25 @@
                 <tbody class="color-black">
 
                     <%
-                        GestionVinculacion gest = new GestionVinculacion();
+                        GestionTitulacion gest = new GestionTitulacion();
                         if (request.getAttribute("filtro") == null || request.getAttribute("filtro").toString().equals("")) {
-                            ArrayList<Vinculacion> vinculaciones = gest.listaVinculaciones();
-                            if (vinculaciones != null) {
-                                for (Vinculacion vinculacion : vinculaciones) {
+                            ArrayList<Titulacion> titulaciones = gest.listaTitulaciones();
+                            if (titulaciones != null) {
+                                for (Titulacion titulacion : titulaciones) {
                                     out.print("<tr>");
-                                    out.print("<td class='text-justify'>" + vinculacion.getId() + "</td>");
-                                    out.print("<td class='text-justify'>" + vinculacion.getTipoVinculacion() + "</td>");
+                                    out.print("<td class='text-justify'>" + titulacion.getId() + "</td>");
+                                    out.print("<td class='text-justify'>" + titulacion.getTipoTitulacion()+ "</td>");
                                     out.print("</tr>");
                                 }
                             }
                         } else if (request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")) {
                             String filtro = request.getAttribute("filtro").toString();
-                            ArrayList<Vinculacion> vinculaciones = gest.listaVinculacionesFiltro(filtro);
-                            if (vinculaciones != null) {
-                                for (Vinculacion vinculacion : vinculaciones) {
+                            ArrayList<Titulacion> titulaciones = gest.listaTitulacionesFiltro(filtro);
+                            if (titulaciones != null) {
+                                for (Titulacion titulacion : titulaciones) {
                                     out.print("<tr>");
-                                    out.print("<td class='text-justify'>" + vinculacion.getId() + "</td>");
-                                    out.print("<td class='text-justify'>" + vinculacion.getTipoVinculacion() + "</td>");
+                                    out.print("<td class='text-justify'>" + titulacion.getId() + "</td>");
+                                    out.print("<td class='text-justify'>" + titulacion.getTipoTitulacion() + "</td>");
                                     out.print("</tr>");
                                 }
                             }
@@ -170,18 +173,18 @@
         <div class=" margin-bottom">
             <ul class="nav nav-pills pills-bg">
                 <li class="nav-item">
-                    <a class="nav-link" href="#nueva" data-toggle="tab">Nueva vinculación</a>
+                    <a class="nav-link" href="#nueva" data-toggle="tab">Nueva titulación</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar vinculación</a>
+                    <a class="nav-link" href="#modifica" data-toggle="tab">Modificar titulación</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#elimina" data-toggle="tab">Eliminar vinculación</a>
+                    <a class="nav-link" href="#elimina" data-toggle="tab">Eliminar titulación</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div id="nueva" class="tab-pane fade">
-                    <form class="margin-sides" action="CrearVinculacion" method="GET">
+                    <form class="margin-sides" action="crearTitulacion" method="GET">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
@@ -193,30 +196,30 @@
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-lg btn-success btn-mid">Nueva Vinculacion</button>
+                        <button type="submit" class="btn btn-lg btn-success btn-mid">Nueva Titulación</button>
                     </form>
                 </div>
 
                 <div id="modifica" class="tab-pane fade">
-                    <form class="margin-sides" method="GET" action="modificarVinculacion" id="modificaform">
+                    <form class="margin-sides" method="GET" action="modificarTitulacion" id="modificaform">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
                                 <input type="text" class="form-control" placeholder="Codigo" id="inCod" name="modid">
                             </div>
                             <div class="col">
-                                <label for="inNom">Tipo Vinculación:</label>
+                                <label for="inNom">Tipo titulación:</label>
                                 <input type="text" class="form-control" placeholder="Nombre" id="inNom" name="modname" >
                             </div>
                         </div>
                         <br>
-                        <button type="button" id="btnmod" class="btn btn-lg btn-warning btn-mid">Modificar vinculacion</button>
+                        <button type="button" id="btnmod" class="btn btn-lg btn-warning btn-mid">Modificar titulacion</button>
                     </form>
 
                 </div>
 
                 <div id="elimina" class="tab-pane fade">
-                    <form class="margin-sides" id="formdel" method="GET" action="eliminaVinculacion">
+                    <form class="margin-sides" id="formdel" method="GET" action="eliminaTitulacion">
                         <div class="row">
                             <div class="col">
                                 <label for="inCod">Codigo:</label>
@@ -224,7 +227,7 @@
                             </div>
                         </div>
                         <br>
-                        <button type="button" id="btndel" class="btn btn-lg btn-danger btn-mid">Eliminar vinculación</button>
+                        <button type="button" id="btndel" class="btn btn-lg btn-danger btn-mid">Eliminar titulación</button>
                     </form>
 
                 </div>

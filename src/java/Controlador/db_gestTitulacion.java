@@ -6,7 +6,7 @@
 package Controlador;
 
 import static Controlador.db_conexion.getConnection;
-import Modelo.Vinculacion;
+import Modelo.Titulacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,15 +15,15 @@ import java.util.ArrayList;
  *
  * @author Santiago
  */
-public class db_gestVinculacion extends db_conexion{
-    public boolean insertVinculacion(Vinculacion vinculacion){
+public class db_gestTitulacion extends db_conexion{
+    public boolean insertTitulacion(Titulacion titulacion){
         PreparedStatement pst = null;
         try {
             int rs = 0;
-            String query = "EXECUTE dbo_creaVinculacion @ID=?,@TIPOVINCULACION=?";
+            String query = "EXECUTE dbo_creaTitulacion @ID=?,@TIPOTITULACION=?";
             pst = getConnection().prepareStatement(query);
-            pst.setString(1, vinculacion.getId());
-            pst.setString(2, vinculacion.getTipoVinculacion());
+            pst.setString(1, titulacion.getId());
+            pst.setString(2, titulacion.getTipoTitulacion());
             rs = pst.executeUpdate();
             if(rs != 0){
                 return true;
@@ -46,14 +46,14 @@ public class db_gestVinculacion extends db_conexion{
         
         return false;
     }
-    public boolean modificaVinculacion(Vinculacion vinculacion){
+    public boolean modificaTitulacion(Titulacion titulacion){
         PreparedStatement pst = null;
         try {
             int rs = 0;
-            String query = "EXECUTE dbo_modificaVinculacion @ID = ?, @TIPOVINCULACION = ?";
+            String query = "EXECUTE dbo_modificaTitulacion @ID = ?, @TIPOTITULACION = ?";
             pst = getConnection().prepareStatement(query);
-            pst.setString(1, vinculacion.getId());
-            pst.setString(2, vinculacion.getTipoVinculacion());
+            pst.setString(1, titulacion.getId());
+            pst.setString(2, titulacion.getTipoTitulacion());
             rs = pst.executeUpdate();
             if(rs != 0){
                 return true;
@@ -74,20 +74,20 @@ public class db_gestVinculacion extends db_conexion{
         }
         return false;
     }
-    public Vinculacion buscaVinculacion(String id){
-        Vinculacion vinculacion = null;
+    public Titulacion buscaTitulacion(String id){
+        Titulacion titulacion = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "EXECUTE dbo_buscaVinculacion @ID = ?";
+            String query = "EXECUTE dbo_buscaTitulacion @ID = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, id);
             rs = pst.executeQuery();
             while(rs.next()){
-                String tipoVinculacion = rs.getString(2);
-                vinculacion = new Vinculacion(id, tipoVinculacion);
+                String tipoTitulacion = rs.getString(2);
+                titulacion = new Titulacion(id, tipoTitulacion);
             }
-            return vinculacion;
+            return titulacion;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         } finally {
@@ -107,13 +107,13 @@ public class db_gestVinculacion extends db_conexion{
         }        
         return null;
     }
-    public boolean eliminaVinculacion(Vinculacion vinculacion){
+    public boolean eliminaTitulacion(Titulacion titulacion){
         PreparedStatement pst = null;
         int rs = 0;
         try {
-            String query = "EXECUTE dbo_eliminaVinculacion @ID = ?";
+            String query = "EXECUTE dbo_eliminaTitulacion @ID = ?";
             pst = getConnection().prepareStatement(query);
-            pst.setString(1, vinculacion.getId());
+            pst.setString(1, titulacion.getId());
             rs = pst.executeUpdate();
             if(rs != 0){
                 return true;
@@ -134,21 +134,21 @@ public class db_gestVinculacion extends db_conexion{
         }
         return false;
     }
-    public ArrayList<Vinculacion> listaVinculacion(){
-        ArrayList<Vinculacion> vinculaciones = new ArrayList<>();
+    public ArrayList<Titulacion> listaTitulaciones(){
+        ArrayList<Titulacion> titulaciones = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "EXECUTE dbo_listaVinculacion";
+            String query = "EXECUTE dbo_listaTitulacion";
             pst = getConnection().prepareStatement(query);
             rs = pst.executeQuery();
             while(rs.next()){
                 String id = rs.getString(1);
-                String tipoVinculacion = rs.getString(2);
-                Vinculacion vinculacion = new Vinculacion(id, tipoVinculacion);
-                vinculaciones.add(vinculacion);
+                String tipoTitulacion = rs.getString(2);
+                Titulacion titulacion = new Titulacion(id, tipoTitulacion);
+                titulaciones.add(titulacion);
             }
-            return vinculaciones;
+            return titulaciones;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         } finally {
@@ -168,22 +168,22 @@ public class db_gestVinculacion extends db_conexion{
         }        
         return null;
     }
-    public ArrayList<Vinculacion> listaVinculacionFiltro(String filtro){
-        ArrayList<Vinculacion> vinculaciones = new ArrayList<>();
+    public ArrayList<Titulacion> listaTitulacionFiltro(String filtro){
+        ArrayList<Titulacion> titulaciones = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String query = "EXECUTE dbo_filtoVinculacion @FILTRO = ?";
+            String query = "EXECUTE dbo_filtroTitulacion @FILTRO = ?";
             pst = getConnection().prepareStatement(query);
             pst.setString(1, filtro);
             rs = pst.executeQuery();
             while(rs.next()){
                 String id = rs.getString(1);
-                String tipoVinculacion = rs.getString(2);
-                Vinculacion vinculacion = new Vinculacion(id, tipoVinculacion);
-                vinculaciones.add(vinculacion);
+                String tipoTitulacion = rs.getString(2);
+                Titulacion titulacion = new Titulacion(id, tipoTitulacion);
+                titulaciones.add(titulacion);
             }
-            return vinculaciones;
+            return titulaciones;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         } finally {
