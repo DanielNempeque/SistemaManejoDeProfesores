@@ -59,7 +59,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="main.jsp">Inicio<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown active">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Elementos
                         </a>
@@ -76,7 +76,7 @@
                             <a class="dropdown-item" href="semilleros.jsp">Semilleros</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Operaciones
                         </a>
