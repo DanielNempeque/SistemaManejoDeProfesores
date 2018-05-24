@@ -97,4 +97,40 @@ public class GestionUsuario {
         }
         return existe;
     }
+  /*  public void SendMail() {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+ 
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("correo de quien envia--->aqui va el correo quien envia", "clave del correo--->aqui la clave del correo");
+                    }
+                });
+ 
+        try {
+ 
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("correo de quien envia"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(correo a quien se le envia-------->aqui va el correo a quien se le envia));
+            message.setSubject(asunto);
+            message.setText(Mensaje);
+ 
+            Transport.send(message);
+            
+            
+                 Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
+                cuadroDialogo.setTitle("Restableciendo contraseña");                               
+                cuadroDialogo.setHeaderText("Se le ha enviado un correo con su contraseña");
+                cuadroDialogo.setContentText("Clic en Aceptar para regresar"); 
+                cuadroDialogo.showAndWait();
+ 
+        } catch (MessagingException e) {
+            
+        }
+    }*/
 }

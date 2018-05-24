@@ -61,15 +61,41 @@
                             Elementos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <%
+                                if(us.getIdRol().equals("SECRET") || us.getIdRol().equals("ADMON1")){                                
+                            %>
                             <a class="dropdown-item" href="areasAcademicas.jsp">Areas académicas</a>
+                            <%
+                                }
+                                if(us.getIdRol().equals("DECA01") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("ADMON1") || us.getIdRol().equals("JEFEA1")){
+                            %>
                             <a class="dropdown-item" href="areasInvestigacion.jsp">Areas investigación</a>
                             <div class="dropdown-divider"></div>
+                            <%
+                                }
+                                if(us.getIdRol().equals("DECA01") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("ADMON1")){
+                            %>
                             <a class="dropdown-item" href="vinculacion.jsp">Vinculación</a>
+                            <%
+                                }
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("DECA01")){
+                            %>
                             <a class="dropdown-item" href="titulacion.jsp">Titulación</a>
+                            <%
+                                }
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("DECA01")){
+                            %>
                             <a class="dropdown-item" href="escalafon.jsp">Escalafón</a>
                             <div class="dropdown-divider"></div>
+                            <%
+                                } 
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")){
+                            %>
                             <a class="dropdown-item" href="centroCosto.jsp">
                                 Centros de costo</a>
+                            <%
+                                }
+                            %>
                             <a class="dropdown-item" href="semilleros.jsp">Semilleros</a>
                         </div>
                     </li>
