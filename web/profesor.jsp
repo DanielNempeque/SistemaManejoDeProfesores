@@ -448,6 +448,13 @@
                                         <input class="form-control" id="dur" type="number" name="dur" placeholder="Dias">
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="luga">Lugar</label>
+                                        <input class="form-control" id="luga" type="text" name="luga" placeholder="Lugar">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-lg btn-info btn-block">Agregar formación</button>
                             </form>
                         </div>
                     </div>
