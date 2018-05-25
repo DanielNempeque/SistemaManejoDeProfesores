@@ -120,16 +120,16 @@
                 }
             %>   
             <ul class="nav nav-pills pills-bg">
+                <li class="nav-item">
+                    <a class="nav-link" href="#busca" data-toggle="tab" id="current">Buscar profesor</a>
+                </li>
                 <%
                     if (us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")) {
                 %>
                 <li class="nav-item">
-                    <a class="nav-link" href="#nuevoProf" data-toggle="tab" id="current"> Nuevo profesor</a>
+                    <a class="nav-link" href="#nuevoProf" data-toggle="tab" > Nuevo profesor</a>
                 </li>
                 <%}%>
-                <li class="nav-item">
-                    <a class="nav-link" href="#busca" data-toggle="tab">Buscar profesor</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#modifica" data-toggle="tab">Modificar profesor</a>
                 </li>
@@ -312,20 +312,19 @@
                     </table>
                 </div> 
                 <div class="tab-pane fade margin-small" id="modifica">
-                    <form method="GET" action="crearProfesor">
+                    <form method="GET" action="modificarProfesor">
 
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="docNum">Id usuario</label>
-                                <input class="form-control" id="docNum" type="text" name="idNum" placeholder="Id usuario">
+                                <input class="form-control" id="docNum" type="text" name="idNum1" placeholder="Id usuario">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="docNum">Vinculacion</label>
-                                <select class="form-control" id="vinc" name="tipoVinc">
-                                    <%
-                                        GestionVinculacion vinc = new GestionVinculacion();
+                                <select class="form-control" id="vinc" name="tipoVinc1">
+                                    <%                                        GestionVinculacion vinc = new GestionVinculacion();
                                         ArrayList<Vinculacion> vinculaciones = vinc.listaVinculaciones();
                                         for (Vinculacion vi : vinculaciones) {
                                             out.print("<option>" + vi.getId() + "</option>");
@@ -336,7 +335,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="docNum">Titulacion</label>
-                                <select class="form-control" id="vinc" name="tipoTitu">
+                                <select class="form-control" id="vinc" name="tipoTitu1">
                                     <%                                        GestionTitulacion titu = new GestionTitulacion();
                                         ArrayList<Titulacion> titulaciones = titu.listaTitulaciones();
                                         for (Titulacion ti : titulaciones) {
@@ -350,7 +349,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="docNum">Area academica</label>
-                                <select class="form-control" id="vinc" name="tipoArea">
+                                <select class="form-control" id="vinc" name="tipoArea1">
                                     <%                                        for (AreaAcademica ar : areas) {
                                             out.print("<option>" + ar.getId() + "</option>");
                                         }
@@ -360,7 +359,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="docNum">Escalafón</label>
-                                <select class="form-control" id="vinc" name="esca">
+                                <select class="form-control" id="vinc" name="esca1">
                                     <%                                        GestionEscalafon esc = new GestionEscalafon();
                                         ArrayList<Escalafon> escalafones = esc.listarEscalafon();
                                         for (Escalafon es : escalafones) {
@@ -397,7 +396,7 @@
                             <div class="form-group col-md-3">
                                 <p>Foto</p>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id=file required name="foto">
+                                    <input type="file" class="custom-file-input" id=file required name="foto1">
                                     <label class="custom-file-label" for="file">Foto</label>
                                 </div>
                             </div>
@@ -407,7 +406,80 @@
                 </div>    
             </div>
         </div>
+        <div class="margin-all">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Formación
+                            </button>
+                        </h5>
+                    </div>
 
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="docNum">Id profesor</label>
+                                        <input class="form-control" id="docNum" type="text" name="idProf" placeholder="Id profesor">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div  class="form-group col-md-6">
+                                        <label for="tipForm">Tipo formacion</label>
+                                        <input class="form-control" id="tipForm" type="text" name="tipForm" placeholder="Tipo de formacion">
+                                    </div>
+                                    <div  class="form-group col-md-6">
+                                        <label for="tipForm">Nombre formación</label>
+                                        <input class="form-control" id="nomForm" type="text" name="nomForm" placeholder="Nombre formacion">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="fechaForm">Fecha formación</label>
+                                        <div class="center-block">
+                                            <input id="fechaForm" width="100%" name="fechaForm">
+                                        </div>
+                                    </div>
+                                    <div  class="form-group col-md-6">
+                                        <label for="tipForm">Duracion (DIAS)</label>
+                                        <input class="form-control" id="dur" type="number" name="dur" placeholder="Dias">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Producción
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Proyección
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>

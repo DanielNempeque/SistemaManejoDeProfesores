@@ -139,6 +139,43 @@ public class db_gestProfesor extends db_conexion {
         }
         return false;
     }
+    public boolean modificarProfesor(Profesor prof) {
+        PreparedStatement pst = null;
+        int rs = 0;
+        try {
+            String query = "EXECUTE dbo_modificaProfesor ?,?,?,?,?,?,?,?,?,?";
+            pst = getConnection().prepareStatement(query);
+            pst.setString(1, prof.getId());
+            pst.setString(2, prof.getFecha_ingreso());
+            pst.setString(3, prof.getFecha_egreso());
+            pst.setString(4, prof.getEstado());
+            pst.setString(5, prof.getFoto());
+            pst.setString(6, prof.getVinculacion());
+            pst.setString(7, prof.getTitulacion());
+            pst.setString(8, prof.getArea());
+            pst.setString(9, prof.getEscalafon());
+            pst.setString(10, prof.getIdUsr());
+            rs = pst.executeUpdate();
+            if (rs != 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+        }
+        return false;
+    }
     public ArrayList<Profesor> listarProfesorFiltro(String filtro) {
         ArrayList<Profesor> profesores = new ArrayList<>();
         PreparedStatement pst = null;

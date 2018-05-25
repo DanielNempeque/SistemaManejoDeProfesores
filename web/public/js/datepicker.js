@@ -10,6 +10,9 @@ $('#fechaegreso1').datepicker({
 $('#fechaingreso1').datepicker({
     uiLibrary: 'bootstrap4'
 });
+$('#fechaForm').datepicker({
+   uiLibrary: 'bootstrap4'
+});
 $(document).ready(function(){
   $('input[type=checkbox]').on('change', function() {
         if ($(this).is(':checked') ) {

@@ -5,8 +5,7 @@
  */
 package servlets;
 
-import Gestion.GestionUsuario;
-import Modelo.Usuario;
+import Gestion.GestionProfesor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,14 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Daniel Nempeque
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "modificarProfesor", urlPatterns = {"/modificarProfesor"})
+public class modificarProfesor extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,25 +35,20 @@ public class login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String user = request.getParameter("usr");
-            String password = request.getParameter("pass");
-            GestionUsuario gestion = new GestionUsuario();
-            Usuario usr = gestion.login(user, password);
-            HttpSession sesion = request.getSession();
-            sesion.setMaxInactiveInterval(600000);
+            String id = request.getParameter("idNum1");
+            String vinculacion = request.getParameter("tipoVinc1");
+            String titulacion = request.getParameter("tipoTitu1");
+            String area = request.getParameter("tipoArea1");
+            String escalafon = request.getParameter("esca1");
+            String fecha_ingreso =  request.getParameter("fechai1");
+            String fecha_egreso =  request.getParameter("fechae1");
+            String estado = request.getParameter("estado1");
+            String foto = request.getParameter("foto1");
             String respuesta;
-            if(usr != null){
-                sesion.setAttribute("user", usr);
-                request.getRequestDispatcher("/main.jsp").forward(request, response);
-            }else if(usr == null){
-                respuesta = "no se encuentra el usuario";
-                request.setAttribute("respuesta",respuesta );
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
-            }else{
-                respuesta = "error desconocido";
-                request.setAttribute("respuesta",respuesta );
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
-            }
+            GestionProfesor gest = new GestionProfesor();
+            respuesta = gest.modificarProfesor(id, vinculacion, titulacion, area, escalafon, fecha_ingreso, fecha_egreso, estado, foto);
+            request.setAttribute("respuesta", respuesta);
+            request.getRequestDispatcher("/profesor.jsp").forward(request, response);
         }
     }
 

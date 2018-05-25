@@ -41,8 +41,8 @@ public class GestionCorreos {
             message.setSubject("Cambio de contraseña SIPFI");
             message.setText("Buen dia,\n"
                     + "\n"
-                    + "\n El proceso de cambio de contraseña en el sistema de profesores de la facultad de ingenieria se ecuentra en pruebas\n"
-                    + "Att : La facultad fake de ingenieria de la Universidad de La Sabana");
+                    + "El proceso de cambio de contraseña en el sistema de profesores de la facultad de ingenieria se ecuentra en pruebas\n"
+                    + "\nFacultad fake de ingenieria de la Universidad de La Sabana");
             Transport transport = session.getTransport("smtp");
             transport.connect("smtp.gmail.com", remitente, clave);
             transport.sendMessage(message, message.getAllRecipients());
