@@ -4,6 +4,8 @@
     Author     : Daniel Nempeque
 --%>
 
+<%@page import="Modelo.Titulacion"%>
+<%@page import="Gestion.GestionTitulacion"%>
 <%@page import="Gestion.GestionUsuario"%>
 <%@page import="Modelo.Profesor"%>
 <%@page import="Gestion.GestionProfesor"%>
@@ -165,9 +167,13 @@
                             <div class="form-group col-md-6">
                                 <label for="docNum">Titulacion</label>
                                 <select class="form-control" id="vinc" name="tipoTitu">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
+                                    <%                                        GestionTitulacion titu = new GestionTitulacion();
+                                        ArrayList<Titulacion> titulaciones = titu.listaTitulaciones();
+                                        for (Titulacion ti : titulaciones) {
+                                            out.print("<option>" + ti.getId() + "</option>");
+                                        }
+
+                                    %>
                                 </select>
                             </div>
                         </div>
@@ -221,7 +227,7 @@
                             <div class="form-group col-md-3">
                                 <p>Foto</p>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id=file required>
+                                    <input type="file" class="custom-file-input" id=file required name="foto">
                                     <label class="custom-file-label" for="file">Foto</label>
                                 </div>
                             </div>
@@ -236,6 +242,16 @@
 
 
                 <div class="tab-pane fade margin-small" id="busca">
+                    <form method="GET" action="filtroProfesor">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input class="form-control" id="filt" type="text" name="filtro" placeholder="Filtro">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success ">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table">
                         <caption>Profesores</caption>
                         <thead class="thead-blue">
@@ -258,27 +274,35 @@
                                     if (areas != null) {
                                         for (Usuario arus : usuarios) {
                                             for (Profesor pr : profesores) {
-                                                out.print("<tr>");
-                                                out.print("<td class='text-justify'>" + pr.getId() + "</td>");
-                                                out.print("<td class='text-justify'>" + arus.getNombre() + arus.getApellido() + "</td>");
-                                                out.print("<td class='text-justify'>" + pr.getVinculacion() + "</td>");
-                                                out.print("<td class='text-justify'>" + pr.getFecha_ingreso() + "</td>");
-                                                out.print("<td class='text-justify'>" + pr.getEstado() + "</td>");
-                                                out.print("</tr>");
+                                                if (arus.getIdRol().equals("PROF01") && arus.getId().equals(pr.getId())) {
+                                                    out.print("<tr>");
+                                                    out.print("<td class='text-justify'>" + pr.getId() + "</td>");
+                                                    out.print("<td class='text-justify'>" + arus.getNombre() + " " + arus.getApellido() + "</td>");
+                                                    out.print("<td class='text-justify'>" + pr.getVinculacion() + "</td>");
+                                                    out.print("<td class='text-justify'>" + pr.getFecha_ingreso() + "</td>");
+                                                    out.print("<td class='text-justify'>" + pr.getEstado() + "</td>");
+                                                    out.print("</tr>");
+                                                }
                                             }
                                         }
                                     }
                                 } else if (request.getAttribute("filtro") != null && !request.getAttribute("filtro").toString().equals("")) {
                                     String filtro = request.getAttribute("filtro").toString();
-                                    ArrayList<Profesor> profesores = gest.listarProfesor();
+                                    ArrayList<Profesor> profesores = gest.listarProfesorFiltro(filtro);
+                                    ArrayList<Usuario> usuarios = gestus.listarUsuariosFiltro(filtro);
                                     if (areas != null) {
-                                        for (Profesor pr : profesores) {
-                                            out.print("<tr>");
-                                            out.print("<td class='text-justify'>" + pr.getId() + "</td>");
-                                            out.print("<td class='text-justify'>" + pr.getVinculacion() + "</td>");
-                                            out.print("<td class='text-justify'>" + pr.getFecha_ingreso() + "</td>");
-                                            out.print("<td class='text-justify'>" + pr.getEstado() + "</td>");
-                                            out.print("</tr>");
+                                        for (Usuario arus : usuarios) {
+                                            for (Profesor pr : profesores) {
+                                                if (arus.getIdRol().equals("PROF01") && arus.getId().equals(pr.getId())) {
+                                                    out.print("<tr>");
+                                                    out.print("<td class='text-justify'>" + pr.getId() + "</td>");
+                                                    out.print("<td class='text-justify'>" + arus.getNombre() + " " + arus.getApellido() + "</td>");
+                                                    out.print("<td class='text-justify'>" + pr.getVinculacion() + "</td>");
+                                                    out.print("<td class='text-justify'>" + pr.getFecha_ingreso() + "</td>");
+                                                    out.print("<td class='text-justify'>" + pr.getEstado() + "</td>");
+                                                    out.print("</tr>");
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -288,7 +312,98 @@
                     </table>
                 </div> 
                 <div class="tab-pane fade margin-small" id="modifica">
+                    <form method="GET" action="crearProfesor">
 
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="docNum">Id usuario</label>
+                                <input class="form-control" id="docNum" type="text" name="idNum" placeholder="Id usuario">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="docNum">Vinculacion</label>
+                                <select class="form-control" id="vinc" name="tipoVinc">
+                                    <%
+                                        GestionVinculacion vinc = new GestionVinculacion();
+                                        ArrayList<Vinculacion> vinculaciones = vinc.listaVinculaciones();
+                                        for (Vinculacion vi : vinculaciones) {
+                                            out.print("<option>" + vi.getId() + "</option>");
+                                        }
+
+                                    %>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="docNum">Titulacion</label>
+                                <select class="form-control" id="vinc" name="tipoTitu">
+                                    <%                                        GestionTitulacion titu = new GestionTitulacion();
+                                        ArrayList<Titulacion> titulaciones = titu.listaTitulaciones();
+                                        for (Titulacion ti : titulaciones) {
+                                            out.print("<option>" + ti.getId() + "</option>");
+                                        }
+
+                                    %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="docNum">Area academica</label>
+                                <select class="form-control" id="vinc" name="tipoArea">
+                                    <%                                        for (AreaAcademica ar : areas) {
+                                            out.print("<option>" + ar.getId() + "</option>");
+                                        }
+
+                                    %>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="docNum">Escalafón</label>
+                                <select class="form-control" id="vinc" name="esca">
+                                    <%                                        GestionEscalafon esc = new GestionEscalafon();
+                                        ArrayList<Escalafon> escalafones = esc.listarEscalafon();
+                                        for (Escalafon es : escalafones) {
+                                            out.print("<option>" + es.getId() + "</option>");
+                                        }
+
+                                    %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="fechaingreso1">Fecha ingreso</label>
+                                <div class="center-block">
+                                    <input id="fechaingreso1" width="276" name="fechai1">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="checkbox" id="checkfechaegreso1">
+                                <label for="fechaegreso1">Fecha egreso</label>
+                                <div id="picker1" class="display-none">
+                                    <input id="fechaegreso1" width="276" name="fechae1">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" id="estado1" name="estado1">
+                                    <option>Activo</option>
+                                    <option>Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <p>Foto</p>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id=file required name="foto">
+                                    <label class="custom-file-label" for="file">Foto</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-warning btn-mid">Modificar profesor</button>
+                    </form>
                 </div>    
             </div>
         </div>

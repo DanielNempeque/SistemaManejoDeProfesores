@@ -81,6 +81,12 @@ public class GestionUsuario {
         usuarios = gest.listaUsuarios();
         return usuarios;
     }
+    public ArrayList<Usuario> listarUsuariosFiltro(String filtro){
+        ArrayList<Usuario> usuarios = null;
+        db_gestUsuario gest = new db_gestUsuario();
+        usuarios = gest.listaUsuariosFiltro(filtro);
+        return usuarios;
+    }
     public String pass(String id) {
         String pass;
         db_gestUsuario gest = new db_gestUsuario();

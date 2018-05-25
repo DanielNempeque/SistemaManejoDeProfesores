@@ -1,8 +1,13 @@
-$.cloudinary.config({ cloud_name: 'dnempeque', secure: true});
 $('#fechaegreso').datepicker({
     uiLibrary: 'bootstrap4'
 });
 $('#fechaingreso').datepicker({
+    uiLibrary: 'bootstrap4'
+});
+$('#fechaegreso1').datepicker({
+    uiLibrary: 'bootstrap4'
+});
+$('#fechaingreso1').datepicker({
     uiLibrary: 'bootstrap4'
 });
 $(document).ready(function(){
@@ -14,6 +19,17 @@ $(document).ready(function(){
         } else {
           if($(this).prop("id") == 'checkfechaegreso'){
             $('#picker').hide();
+          }
+        }
+    });
+    $('input[type=checkbox]').on('change', function() {
+        if ($(this).is(':checked') ) {
+            if($(this).prop("id") == 'checkfechaegreso1'){
+              $('#picker1').show();
+            }
+        } else {
+          if($(this).prop("id") == 'checkfechaegreso1'){
+            $('#picker1 ').hide();
           }
         }
     });

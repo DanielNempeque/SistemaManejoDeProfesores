@@ -5,7 +5,7 @@
  */
 package servlets;
 
-import Gestion.GestionProfesor;
+import Gestion.GestionCorreos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Daniel Nempeque
  */
-@WebServlet(name = "crearProfesor", urlPatterns = {"/crearProfesor"})
-public class crearProfesor extends HttpServlet {
+@WebServlet(name = "cambiarContraseña", urlPatterns = {"/cambiarContrase_a"})
+public class cambiarContraseña extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,21 +35,12 @@ public class crearProfesor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("idNum");
-            String vinculacion = request.getParameter("tipoVinc");
-            String titulacion = request.getParameter("tipoTitu");
-            String area = request.getParameter("tipoArea");
-            String escalafon = request.getParameter("esca");
-            String fecha_ingreso =  request.getParameter("fechai");
-            String fecha_egreso =  request.getParameter("fechae");
-            String estado = request.getParameter("estado");
-            String foto = request.getParameter("foto");
-            String respuesta;
-            GestionProfesor gest = new GestionProfesor();
-            respuesta = gest.crearProfesor(id, vinculacion, titulacion, area, escalafon, fecha_ingreso, fecha_egreso, estado, foto);
+            String correo = request.getParameter("name");
+            GestionCorreos gest = new GestionCorreos();
+            gest.enviarCorreo(correo);
+            String respuesta = "Se ha enviado un correo de re-establecimiento";
             request.setAttribute("respuesta", respuesta);
-            request.getRequestDispatcher("/profesor.jsp").forward(request, response);
-            
+            request.getRequestDispatcher("/cambioContrasena.jsp").forward(request, response);
         }
     }
 

@@ -13,6 +13,9 @@ a:hover{
 label{
 	color: #000;
 }
+margin-all{
+    margin: 10%;
+}
 .btn-login{
 	background-color: #002661;
 	color: #FFF;

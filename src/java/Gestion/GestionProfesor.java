@@ -22,33 +22,30 @@ public class GestionProfesor {
                     if (area != null && area != "") {
                         if (escalafon != null && escalafon != "") {
                             if (fechaIngreso != null && fechaIngreso != "") {
-                                if (fechaEgreso != null && fechaEgreso != "") {
-                                    if (estado != null && estado != "") {
-                                        if (foto != null && foto != "") {
-                                            if(!exists(id)){
-                                                boolean creado = false;
-                                                db_gestProfesor gest = new db_gestProfesor();
-                                                Profesor prof = new Profesor(id, fechaIngreso, fechaEgreso, estado, foto, vinculacion, titulacion, area, escalafon, id);
-                                                creado = gest.crearProfesor(prof);
-                                                if(creado){
-                                                    return "Se ha creado correctamente";
-                                                }else if(!creado){
-                                                    return "No se ha podido crear";
-                                                }else{
-                                                    return "Error desconocido";
-                                                }
-                                            }else{
-                                                return"Ya existe";
+                                if (estado != null && estado != "") {
+                                    if (foto != null && foto != "") {
+                                        if (!exists(id)) {
+                                            boolean creado = false;
+                                            db_gestProfesor gest = new db_gestProfesor();
+                                            Profesor prof = new Profesor(id, fechaIngreso, fechaEgreso, estado, foto, vinculacion, titulacion, area, escalafon, id);
+                                            creado = gest.crearProfesor(prof);
+                                            if (creado) {
+                                                return "Se ha creado correctamente";
+                                            } else if (!creado) {
+                                                return "No se ha podido crear";
+                                            } else {
+                                                return "Error desconocido";
                                             }
                                         } else {
-                                            return "Seleccione una foto valida";
+                                            return "Ya existe";
                                         }
                                     } else {
-                                        return "Seleccione un estado valido";
+                                        return "Seleccione una foto valida";
                                     }
                                 } else {
-                                    return "Seleccione una fecha valida";
+                                    return "Seleccione un estado valido";
                                 }
+
                             } else {
                                 return "Seleccione una fecha valida";
                             }
@@ -75,11 +72,17 @@ public class GestionProfesor {
         profesores = gest.listarProfesor();
         return profesores;
     }
-    public boolean exists(String id){
+    public ArrayList<Profesor> listarProfesorFiltro(String filtro) {
+        ArrayList<Profesor> profesores = null;
+        db_gestProfesor gest = new db_gestProfesor();
+        profesores = gest.listarProfesorFiltro(filtro);
+        return profesores;
+    }
+    public boolean exists(String id) {
         boolean existe = false;
         db_gestProfesor gest = new db_gestProfesor();
-        if(gest.buscaProfesor(id)!= null){
-            existe= true;
+        if (gest.buscaProfesor(id) != null) {
+            existe = true;
         }
         return existe;
     }
