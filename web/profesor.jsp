@@ -242,13 +242,14 @@
 
 
                 <div class="tab-pane fade margin-small" id="busca">
+                    <h3>Filtrar</h3>
                     <form method="GET" action="filtroProfesor">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input class="form-control" id="filt" type="text" name="filtro" placeholder="Filtro">
                             </div>
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-success ">Buscar</button>
+                                <button type="submit" class="btn btn-success ">Filtrar</button>
                             </div>
                         </div>
                     </form>
@@ -310,6 +311,18 @@
                             %>
                         </tbody>
                     </table>
+                    <form method="GET" action="buscaProfesor">
+                        <h3>Buscar</h3>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">                       
+                                <input type="text" id="busc" name="busc" placeholder="Id profesor" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-info ">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+
                 </div> 
                 <div class="tab-pane fade margin-small" id="modifica">
                     <form method="GET" action="modificarProfesor">
@@ -487,13 +500,43 @@
                 </div>
             </div>
         </div>
+        <%            if (request.getAttribute("busqueda") != null) {
+                String busqueda = (String) request.getAttribute("busqueda");
+                if (busqueda.equals("true")) {
+                    out.print("<srcipt><script>");
+                }
+            }
+        %>
 
 
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
-        <script src="public/js/datepicker.js"></script>
-        <script src="public/js/profesor.js"></script>
-    </body>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
+    <script src="public/js/datepicker.js"></script>
+    <script src="public/js/profesor.js"></script>
+    
+
+</body>
 
 </html>
 <% } else {
