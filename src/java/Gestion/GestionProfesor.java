@@ -135,4 +135,9 @@ public class GestionProfesor {
         }
         return existe;
     }
+    public Profesor buscaProfesor (String id){
+        db_gestProfesor gest = new db_gestProfesor();
+        Profesor prof = gest.buscaProfesor(id);
+        return prof;
+    }
 }

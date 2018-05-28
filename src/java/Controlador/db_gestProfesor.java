@@ -79,7 +79,7 @@ public class db_gestProfesor extends db_conexion {
                 String titul = rs.getString(7);
                 String area = rs.getString(8);
                 String esca = rs.getString(9);
-                String us = rs.getString(0);
+                String us = rs.getString(10);
                 profesor = new Profesor(ide,fechaIngreso, fechaEgreso, estado, foto, vinc, titul, area, esca, us);
             }
         } catch (Exception e) {

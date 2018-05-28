@@ -500,43 +500,114 @@
                 </div>
             </div>
         </div>
-        <%            if (request.getAttribute("busqueda") != null) {
-                String busqueda = (String) request.getAttribute("busqueda");
-                if (busqueda.equals("true")) {
-                    out.print("<srcipt><script>");
-                }
-            }
+        <%            if (request.getAttribute("id") != null) {
+                GestionProfesor gestPro = new GestionProfesor();
+                GestionUsuario gestUsuario = new GestionUsuario();
+                String id = (String) request.getAttribute("id");
+                Profesor profe = gestPro.buscaProfesor(id);
+                Usuario usr = gestUsuario.buscaUsuario(id);
+                if (profe != null && id != null) {
+
         %>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true'>
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h6 class="modal-title" id="exampleModalLongTitle">
+                            <%                                out.print(usr.getNombre() + " " + usr.getApellido());
+                            %></h6>
+
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div>
+                            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_163a7dcc911%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_163a7dcc911%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274%22%20y%3D%22104.8%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="rounded mx-auto d-block" alt="cosas">
+                        </div>
+                        <br>
+                        <div class="text-center"><h6><%out.print(profe.getEstado());%></h6></div>
+                        <div class="row container">
+                            <div class="col-md-12">
+                                <h6 class="font-weight-bold">Correo</h6>
+                                <p class='text-center'>
+                                <%
+                                    out.print(usr.getCorreo());
+                                %>
+                                </p>
+                            </div>                            
+                        </div>
+                        <div class="row container">
+                            <div class="col-md-12">
+                                <h6 class="font-weight-bold">Telefono</h6>
+                                <p class='text-center'>
+                                <%
+                                    out.print(usr.getTelefono());
+                                %>
+                                </p>
+                            </div>                            
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-6">
+                                <h6 class="font-weight-bold">Fecha ingreso</h6>
+                                <%
+                                    out.print(profe.getFecha_ingreso());
+                                %></div>
+                            <div class="col-md-6">
+                                <h6 class="font-weight-bold">Fecha egreso</h6>
+                                <%
+                                    out.print(profe.getFecha_egreso());
+                                %></div>
+                        </div>
+                        <br>
+                        <div class="row text-center">
+
+                            <div class="col-md-6">
+                                <h6 class="font-weight-bold">Vinculacion</h6>
+                                <%
+                                    out.print(profe.getVinculacion());
+                                %></div>
+                            <div class="col-md-6">
+                                <h6 class="font-weight-bold">Titulacion</h6>
+                                <%
+                                    out.print(profe.getTitulacion());
+                                %></div>                      
+                        </div>
+                        <br>
+                        <div class="row text-center">
+
+                            <div class="col-md-6">
+                                <h6 class="font-weight-bold">Area</h6>
+                                <%
+                                    out.print(profe.getArea());
+                                %></div>
+                            <div class="col-md-6">
+                                <h6 class="font-weight-bold">Escalafon</h6>
+                                <%
+                                    out.print(profe.getEscalafon());
+                                %></div>                      
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
-    
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
-    <script src="public/js/datepicker.js"></script>
-    <script src="public/js/profesor.js"></script>
-    
+        <%
+                }
+            }
 
-</body>
+        %>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js" integrity="sha384-lZmvU/TzxoIQIOD9yQDEpvxp6wEU32Fy0ckUgOH4EIlMOCdR823rg4+3gWRwnX1M" crossorigin="anonymous"></script>
+        <script src="public/js/datepicker.js"></script>
+        <script src="public/js/profesor.js"></script>
+
+
+    </body>
 
 </html>
 <% } else {

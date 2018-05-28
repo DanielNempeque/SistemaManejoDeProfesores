@@ -5,4 +5,5 @@ $('#newbtn').click(function(){
     }
 });
 $('#current').click();
+$('#myModal').modal('show');
 

@@ -5,6 +5,10 @@
  */
 package servlets;
 
+import Gestion.GestionProfesor;
+import Gestion.GestionUsuario;
+import Modelo.Profesor;
+import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,9 +37,8 @@ public class buscaProfesor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String busqueda;
-            busqueda = "true";
-            request.setAttribute("busqueda", busqueda);
+            String id = request.getParameter("busc");
+            request.setAttribute("id", id);
             request.getRequestDispatcher("/profesor.jsp").forward(request, response);
         }
     }
