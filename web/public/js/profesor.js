@@ -4,6 +4,11 @@ $('#newbtn').click(function(){
         $('#newUsr').submit();
     }
 });
+function cargar(elemento){
+    var file = elemento.files[0];
+    var objHidden = document.form.hidd;
+    objHidden.value = file.name;
+}
 $('#current').click();
 $('#myModal').modal('show');
 

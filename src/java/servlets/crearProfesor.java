@@ -6,19 +6,25 @@
 package servlets;
 
 import Gestion.GestionProfesor;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Daniel Nempeque
  */
 @WebServlet(name = "crearProfesor", urlPatterns = {"/crearProfesor"})
+@MultipartConfig
 public class crearProfesor extends HttpServlet {
 
     /**
@@ -30,26 +36,13 @@ public class crearProfesor extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("idNum");
-            String vinculacion = request.getParameter("tipoVinc");
-            String titulacion = request.getParameter("tipoTitu");
-            String area = request.getParameter("tipoArea");
-            String escalafon = request.getParameter("esca");
-            String fecha_ingreso =  request.getParameter("fechai");
-            String fecha_egreso =  request.getParameter("fechae");
-            String estado = request.getParameter("estado");
-            String foto = request.getParameter("foto");
-            String respuesta;
-            GestionProfesor gest = new GestionProfesor();
-            respuesta = gest.crearProfesor(id, vinculacion, titulacion, area, escalafon, fecha_ingreso, fecha_egreso, estado, foto);
-            request.setAttribute("respuesta", respuesta);
-            request.getRequestDispatcher("/profesor.jsp").forward(request, response);
-            
+
         }
     }
 
@@ -79,7 +72,33 @@ public class crearProfesor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("idNum");
+        String vinculacion = request.getParameter("tipoVinc");
+        String titulacion = request.getParameter("tipoTitu");
+        String area = request.getParameter("tipoArea");
+        String escalafon = request.getParameter("esca");
+        String fecha_ingreso = request.getParameter("fechai");
+        String fecha_egreso = request.getParameter("fechae");
+        String estado = request.getParameter("estado");
+        String respuesta;
+        
+        Part file = request.getPart("foto");
+        String nom = request.getParameter("hidd");
+        InputStream is = file.getInputStream();
+        String rutaRelativaApp= getServletContext().getRealPath("/");
+        File fil = new File(rutaRelativaApp+"/public/uploads/"+nom);
+        FileOutputStream ous = new FileOutputStream(fil);
+        int dato = is.read();
+        while(dato != -1){
+            ous.write(dato);
+            dato = is.read();
+        }
+        ous.close();
+        is.close();
+        GestionProfesor gest = new GestionProfesor();
+        respuesta = gest.crearProfesor(id, vinculacion, titulacion, area, escalafon, fecha_ingreso, fecha_egreso, estado, nom);
+        request.setAttribute("respuesta", respuesta);
+        request.getRequestDispatcher("/profesor.jsp").forward(request, response);
     }
 
     /**

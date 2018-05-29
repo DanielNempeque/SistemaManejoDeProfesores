@@ -142,7 +142,7 @@
                     if (us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")) {
                 %>
                 <div class="tab-pane fade margin-small" id="nuevoProf">
-                    <form method="GET" action="crearProfesor">
+                    <form method="POST" action="crearProfesor" enctype="multipart/form-data" name="form">
 
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -227,11 +227,12 @@
                             <div class="form-group col-md-3">
                                 <p>Foto</p>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id=file required name="foto">
-                                    <label class="custom-file-label" for="file">Foto</label>
+                                    <input type="file" class="custom-file-input" id=file required name="foto" accept="image/*" onchange="cargar(this)">
+                                    <label class="custom-file-label" for="file" size="50">Foto</label>
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="hidd" value="">
                         <button type="submit" class="btn btn-lg btn-success btn-mid">Crear profesor</button>
                     </form>
                 </div>
@@ -325,7 +326,7 @@
 
                 </div> 
                 <div class="tab-pane fade margin-small" id="modifica">
-                    <form method="GET" action="modificarProfesor">
+                    <form method="GET" action="modificarProfesor" enctype="multipart/form-data">
 
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -513,7 +514,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h6 class="modal-title" id="exampleModalLongTitle">
+                        <h6 class="modal-title font-weight-bold" id="exampleModalLongTitle">
                             <%                                out.print(usr.getNombre() + " " + usr.getApellido());
                             %></h6>
 
@@ -525,17 +526,20 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_163a7dcc911%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_163a7dcc911%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274%22%20y%3D%22104.8%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="rounded mx-auto d-block" alt="cosas">
+                            
+                            <img src="public/uploads/<%
+                                out.print(profe.getFoto());
+                            %>" class="rounded mx-auto d-block" alt="foto no disponible">
                         </div>
                         <br>
-                        <div class="text-center"><h6><%out.print(profe.getEstado());%></h6></div>
+                        <div class="text-center"><h6 class="font-weight-bold"><%out.print(profe.getEstado());%></h6></div>
                         <div class="row container">
                             <div class="col-md-12">
                                 <h6 class="font-weight-bold">Correo</h6>
                                 <p class='text-center'>
-                                <%
-                                    out.print(usr.getCorreo());
-                                %>
+                                    <%
+                                        out.print(usr.getCorreo());
+                                    %>
                                 </p>
                             </div>                            
                         </div>
@@ -543,9 +547,9 @@
                             <div class="col-md-12">
                                 <h6 class="font-weight-bold">Telefono</h6>
                                 <p class='text-center'>
-                                <%
-                                    out.print(usr.getTelefono());
-                                %>
+                                    <%
+                                        out.print(usr.getTelefono());
+                                    %>
                                 </p>
                             </div>                            
                         </div>
