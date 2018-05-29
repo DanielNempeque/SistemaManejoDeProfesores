@@ -25,7 +25,7 @@
     if (us != null) {
 %>
 <html>
-
+    <a href="profesor.jsp"></a>
     <head>
         <title>Sistema de manejo de profesores</title>
         <meta charset="utf-8">
@@ -529,7 +529,7 @@
                             
                             <img src="public/uploads/<%
                                 out.print(profe.getFoto());
-                            %>" class="rounded mx-auto d-block" alt="foto no disponible">
+                                %>" class="rounded mx-auto d-block" alt="foto no disponible" style="width: 100%;">
                         </div>
                         <br>
                         <div class="text-center"><h6 class="font-weight-bold"><%out.print(profe.getEstado());%></h6></div>
