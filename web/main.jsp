@@ -103,11 +103,17 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Operaciones
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">                            
                             <a class="dropdown-item" href="profesor.jsp">Profesor</a>
                             <a class="dropdown-item" href="gruposInvestigacion.jsp">Grupos de investigación</a>
                             <a class="dropdown-item" href="proyectos.jsp">Proyectos</a>
+                            <%
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")){
+                            %>
                             <a class="dropdown-item" href="usuario.jsp">Usuarios</a>
+                            <%
+                                }
+                            %>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -133,8 +139,8 @@
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="public/img/edificio d.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h4>Evento 1</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+                        <h4>Propuesta</h4>
+                        <p>Equipo Elektro Universidad de La Sabana
                         </p>
                     </div>
                 </div>

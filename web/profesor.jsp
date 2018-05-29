@@ -69,7 +69,7 @@
             <!--navbar items-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link" href="main.jsp">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
@@ -77,15 +77,41 @@
                             Elementos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <%
+                                if(us.getIdRol().equals("SECRET") || us.getIdRol().equals("ADMON1")){                                
+                            %>
                             <a class="dropdown-item" href="areasAcademicas.jsp">Areas académicas</a>
+                            <%
+                                }
+                                if(us.getIdRol().equals("DECA01") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("ADMON1") || us.getIdRol().equals("JEFEA1")){
+                            %>
                             <a class="dropdown-item" href="areasInvestigacion.jsp">Areas investigación</a>
                             <div class="dropdown-divider"></div>
+                            <%
+                                }
+                                if(us.getIdRol().equals("DECA01") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("ADMON1")){
+                            %>
                             <a class="dropdown-item" href="vinculacion.jsp">Vinculación</a>
+                            <%
+                                }
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("DECA01")){
+                            %>
                             <a class="dropdown-item" href="titulacion.jsp">Titulación</a>
+                            <%
+                                }
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET") || us.getIdRol().equals("DECA01")){
+                            %>
                             <a class="dropdown-item" href="escalafon.jsp">Escalafón</a>
                             <div class="dropdown-divider"></div>
+                            <%
+                                } 
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")){
+                            %>
                             <a class="dropdown-item" href="centroCosto.jsp">
                                 Centros de costo</a>
+                            <%
+                                }
+                            %>
                             <a class="dropdown-item" href="semilleros.jsp">Semilleros</a>
                         </div>
                     </li>
@@ -93,11 +119,17 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Operaciones
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">                            
                             <a class="dropdown-item" href="profesor.jsp">Profesor</a>
                             <a class="dropdown-item" href="gruposInvestigacion.jsp">Grupos de investigación</a>
                             <a class="dropdown-item" href="proyectos.jsp">Proyectos</a>
+                            <%
+                                if(us.getIdRol().equals("ADMON1") || us.getIdRol().equals("SECRET")){
+                            %>
                             <a class="dropdown-item" href="usuario.jsp">Usuarios</a>
+                            <%
+                                }
+                            %>
                         </div>
                     </li>
                     <li class="nav-item">
