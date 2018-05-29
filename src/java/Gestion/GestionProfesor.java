@@ -7,6 +7,7 @@ package Gestion;
 
 import Controlador.db_gestProfesor;
 import Modelo.Profesor;
+import Modelo.Usuario;
 import java.util.ArrayList;
 
 /**
@@ -74,20 +75,25 @@ public class GestionProfesor {
                             if (fechaIngreso != null && fechaIngreso != "") {
                                 if (estado != null && estado != "") {
                                     if (foto != null && foto != "") {
-                                        if (!exists(id)) {
+                                        if (exists(id)) {
                                             boolean creado = false;
                                             db_gestProfesor gest = new db_gestProfesor();
                                             Profesor prof = new Profesor(id, fechaIngreso, fechaEgreso, estado, foto, vinculacion, titulacion, area, escalafon, id);
                                             creado = gest.modificarProfesor(prof);
                                             if (creado) {
-                                                return "Se ha modificado correctamente";
+                                                GestionCorreos gestCor = new GestionCorreos();
+                                                GestionUsuario gestUsuario =  new GestionUsuario();
+                                                Usuario us = gestUsuario.buscaUsuario(id);
+                                                String correo =  us.getCorreo();
+                                                gestCor.enviarCorreos(correo);
+                                                return "Se ha modificado correctamente";                                                                            
                                             } else if (!creado) {
                                                 return "No se ha podido modificar";
                                             } else {
                                                 return "Error desconocido";
                                             }
                                         } else {
-                                            return "Ya existe";
+                                            return "No existe";
                                         }
                                     } else {
                                         return "Seleccione una foto valida";
