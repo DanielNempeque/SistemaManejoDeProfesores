@@ -5,8 +5,7 @@
  */
 package servlets;
 
-import Gestion.GestionCorreos;
-import Gestion.RandomString;
+import Gestion.GestionUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Daniel Nempeque
  */
-@WebServlet(name = "cambiarContraseña", urlPatterns = {"/cambiarContrase_a"})
-public class cambiarContraseña extends HttpServlet {
+@WebServlet(name = "nuevaCon", urlPatterns = {"/nuevaCon"})
+public class nuevaCon extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,15 +35,22 @@ public class cambiarContraseña extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String correo = request.getParameter("name");
-            GestionCorreos gest = new GestionCorreos();
-            RandomString rad = new RandomString(10);
-            String codigo = rad.nextString();
-            gest.enviarCorreo(correo,codigo);
-            String respuesta = "Se ha enviado un correo de re-establecimiento";
-            request.getSession().setAttribute("cod", codigo);
-            request.setAttribute("respuesta", respuesta);
-            request.getRequestDispatcher("/validacionContraseña.jsp").forward(request, response);
+            String id = request.getParameter("ide");
+            String codA = (String) request.getSession().getAttribute("cod");
+            String codB = request.getParameter("codigo");
+            String con = request.getParameter("con1");
+            System.out.println(codA);
+            System.out.println(codB);
+            if (codB.equals(codA)) {
+                GestionUsuario gest = new GestionUsuario();
+                gest.cambiarContrasena(id, con);
+                request.setAttribute("respuesta", "Se ha cambiado con exito");
+                request.getRequestDispatcher("/validacionContraseña.jsp").forward(request, response);
+            }else if(!codA.equals(codB)){
+                request.setAttribute("respuesta", "No se ha podido cambiar");
+                request.getRequestDispatcher("/validacionContraseña.jsp").forward(request, response);
+            }
+
         }
     }
 

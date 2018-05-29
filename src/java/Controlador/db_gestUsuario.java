@@ -274,4 +274,35 @@ public class db_gestUsuario extends db_conexion {
         }
         return null;
     }
+    public boolean cambioContraseña(String id, String contrasena){
+        boolean mod = false;
+        Usuario user = null;
+        PreparedStatement pst = null;
+        int rs = 0;
+        try {
+            String query = "EXECUTE dbo_cambiarContrasena @ID = ?, @PASS = ?";
+            pst = getConnection().prepareStatement(query);
+            pst.setString(1, id);
+            pst.setString(2, contrasena);
+            rs = pst.executeUpdate();
+            if(rs > 0){
+                mod = true;
+            }
+            return mod;
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+                System.err.println("ERROR: " + e);
+            }
+        }
+        return mod;
+    }
 }

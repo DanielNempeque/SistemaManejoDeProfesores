@@ -29,20 +29,19 @@
         <link rel="stylesheet" href="public/css/style.css">
     </head>
     <body>
-        <%
-                if (request.getAttribute("respuesta") != null) {
-                    out.print("<h2>" + request.getAttribute("respuesta") + "</h2>");
-                    request.setAttribute("respuesta", null);
-                }
-        %>
-        <div class="margin-all">
-            <form method="GET" action="cambiarContrase_a">
-                <div class="form-group">
-                    <label for="inputUser">Usuario o correo</label>
-                    <input type="text" class="form-control" name="name" id="inputUser" placeholder="mail">
-                </div>
-                <button type="submit" class="btn btn-default center-block btn-login">Olvide mi contraseña</button>
-            </form>
+        <div class="container" style="margin-top: 10%;">
+            <div class="row text-center">
+                <h2 class="text-center">Cambio de contraseña</h2>
+            </div>
+            <div class="margin-all">
+                <form method="GET" action="cambiarContrase_a">
+                    <div class="form-group">
+                        <label for="inputUser">Usuario o correo</label>
+                        <input type="text" class="form-control" name="name" id="inputUser" placeholder="mail">
+                    </div>
+                    <button type="submit" class="btn btn-default center-block btn-login">Olvide mi contraseña</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>

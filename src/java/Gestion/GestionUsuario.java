@@ -108,4 +108,10 @@ public class GestionUsuario {
         Usuario usr = gest.buscaUsuario(id);
         return usr;
     }
+    public boolean cambiarContrasena(String id, String pass){
+        boolean cambio = false;
+        db_gestUsuario gest = new db_gestUsuario();
+        cambio = gest.cambioContraseña(id, pass);
+        return cambio;
+    }
  }

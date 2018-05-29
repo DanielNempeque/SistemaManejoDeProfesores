@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class GestionCorreos {
 
-    public void enviarCorreo(String destinatario) {
+    public void enviarCorreo(String destinatario, String codigo) {
         // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
         String remitente = "sistemaprofesoresis";  //Para la dirección nomcuenta@gmail.com
         String clave = "InGeSoftWare12";
@@ -41,7 +41,8 @@ public class GestionCorreos {
             message.setSubject("Cambio de contraseña SIPFI");
             message.setText("Buen dia,\n"
                     + "\n"
-                    + "El proceso de cambio de contraseña en el sistema de profesores de la facultad de ingenieria se ecuentra en pruebas\n"
+                    + "Para continuar con el proceso de cambio de contraseña es necesario que ingrese el siguiente codigo en la plataforma\n"
+                    + "CODIGO: "+codigo+"\n"
                     + "\nFacultad fake de ingenieria de la Universidad de La Sabana");
             Transport transport = session.getTransport("smtp");
             transport.connect("smtp.gmail.com", remitente, clave);
